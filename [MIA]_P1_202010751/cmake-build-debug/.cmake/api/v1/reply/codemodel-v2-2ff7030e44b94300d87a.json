@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "_MIA__P1_202010751::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-_MIA__P1_202010751-Debug-049ebaf0524532ea8442.json",
+					"jsonFile" : "target-_MIA__P1_202010751-Debug-22dc60e0d5084d71e4d6.json",
 					"name" : "_MIA__P1_202010751",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/parguet/[MIA]_P1_202010751/cmake-build-debug",
-		"source" : "/home/parguet/[MIA]_P1_202010751"
+		"build" : "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug",
+		"source" : "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751"
 	},
 	"version" : 
 	{

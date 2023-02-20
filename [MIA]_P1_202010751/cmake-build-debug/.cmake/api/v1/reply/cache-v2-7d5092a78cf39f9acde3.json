@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/parguet/[MIA]_P1_202010751/cmake-build-debug"
+			"value" : "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/parguet/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/parguet/[MIA]_P1_202010751"
+			"value" : "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1147,7 +1147,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/parguet/[MIA]_P1_202010751/cmake-build-debug"
+			"value" : "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug"
 		},
 		{
 			"name" : "_MIA__P1_202010751_IS_TOP_LEVEL",
@@ -1171,7 +1171,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/parguet/[MIA]_P1_202010751"
+			"value" : "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751"
 		}
 	],
 	"kind" : "cache",
