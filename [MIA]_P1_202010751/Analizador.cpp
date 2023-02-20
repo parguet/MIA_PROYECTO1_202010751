@@ -3,7 +3,7 @@
 //
 
 #include "Analizador.h"
-
+#include <fstream>
 #include <iostream>
 #include <regex>
 #include <queue>
@@ -13,6 +13,8 @@ void addToken(string cadena,string tipo);
 void analizarTipo(string comando);
 void readTokens(string comando);
 void fn_mkdisk();
+void fn_execute();
+void lectura(string path);
 
 
 Analizador::Analizador(){
@@ -31,12 +33,14 @@ comando obtenerComando();
 queue<token> colaTokens;
 void Analizador::analizarTipo(string comando){
     regex mkdisk("[m|M][k|K][d|D][i|I][s|S][k|K]");
+    regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
+
+
     if(regex_search(comando,mkdisk)==1){
         comando = regex_replace(comando, mkdisk, "");
         cout<<" ---- Se dectecto mkdisk ---- "<<endl;
         cout<<comando<<endl;
         readTokens(comando);
-        cout <<colaTokens.size()<<endl;
         /*while(!colaTokens.empty()){
             token r;
             r = colaTokens.front();
@@ -45,6 +49,15 @@ void Analizador::analizarTipo(string comando){
         }*/
         fn_mkdisk();
     }
+    else if(regex_search(comando,execute)==1){
+        comando = regex_replace(comando,execute,"");
+        cout<<" ---- Se dectecto execute ---- "<<endl;
+        cout << comando << endl;
+        readTokens(comando);
+        fn_execute();
+
+    }
+
 }
 
 void fn_mkdisk(){
@@ -111,6 +124,61 @@ void fn_mkdisk(){
     Disk *disck_cmd = new Disk();
     disck_cmd->mkdisk(tamanio,fit,unit,path);
 }
+
+void fn_execute(){
+    string path;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else{
+            cout << "\033[1;31m" << "Error: " <<  "Parametro erroneo" << "\033[0m"<< endl;
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        cout << "\033[1;31m" << "Error: " <<  "Falto el parametro obligatorio path"<< "\033[0m"<< endl;
+        return;
+    }
+
+    regex eea("[.][e|E][e|E][a|A]" );
+    if(regex_search(path,eea) == 0){
+        cout << "\033[1;31m" << "Error: " <<  "Se esperaba extension eea"<< "\033[0m"<< endl;
+        return;
+    }
+
+    lectura(path);
+}
+
+void lectura(string path){
+    cout<<" ---- Nueva lectura ---- "<<endl;
+    ifstream archivo;
+    string entrada;
+    archivo.open(path,ios::in);
+    //archivo.open("../Analizador/Test/Entrada.txt",ios::in);//abrir archivo modo lectura
+
+    if(archivo.fail()){
+        cout << "\033[1;31m" << "Error: " <<  "No se pudo abrir el archivo"<< "\033[0m"<< endl;
+        return;
+    }
+
+    regex comentario("[#][^\n]*");
+    regex flecha("->");
+
+    while(!archivo.eof()){
+        getline(archivo,entrada);
+        entrada= regex_replace(entrada,comentario,"");
+        entrada= regex_replace(entrada,flecha,"=");
+        if(entrada.empty())
+            continue;
+        analizarTipo(entrada);
+    }
+    archivo.close();
+}
+
 
 comando obtenerComando(){
     comando comando_salida;
