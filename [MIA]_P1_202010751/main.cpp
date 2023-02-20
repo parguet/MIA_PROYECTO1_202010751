@@ -5,6 +5,7 @@ using namespace std;
 
 int main() {
     //home/parguet/Escritorio
+    //execute >path=/execute >path=/home/parguet/Escritorio/prueba.eea
     cout<<" ---- Bienvenido al Sistema de Archivos de  - 202010751 ---- "<<endl;
     regex comentario("[#][^\n]*");
     regex flecha("->");

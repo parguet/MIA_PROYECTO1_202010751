@@ -36,6 +36,7 @@ void Analizador::analizarTipo(string comando){
     regex mkdisk("[m|M][k|K][d|D][i|I][s|S][k|K]");
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
     regex fdisk("[f|F][d|D][i|I][s|S][k|K]" );
+    regex rep("[r|R][e|E][p|P]" );
 
 
     if(regex_search(comando,mkdisk)==1){
@@ -68,6 +69,21 @@ void Analizador::analizarTipo(string comando){
         readTokens(comando);
         fn_fdisk();
         cout<<" ---- Termino fdisk ---- "<<endl;
+
+    }
+    else if(regex_search(comando,rep)==1){
+        comando = regex_replace(comando,rep,"");
+        cout<<" ---- Se dectecto rep ---- "<<endl;
+        cout << comando << endl;
+        //cout<<" ---- rep mbr ---- "<<endl;
+        //Disk *disk_cmd = new Disk();
+        //disk_cmd->rep_mbr("id","/home/parguet/Escritorio/Disco1.dsk");
+        //cout<<" ---- end rep mbr ---- "<<endl;
+        cout<<" ---- rep disk ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->rep_disk("id","/home/parguet/Escritorio/Disco1.dsk");
+        cout<<" ---- end rep disk ---- "<<endl;
+        cout<<" ---- Termino rep ---- "<<endl;
 
     }
 
@@ -267,7 +283,8 @@ void lectura(string path){
         entrada= regex_replace(entrada,flecha,"=");
         if(entrada.empty())
             continue;
-        analizarTipo(entrada);
+        Analizador analizador;
+        analizador.analizarTipo(entrada);
     }
     archivo.close();
 }

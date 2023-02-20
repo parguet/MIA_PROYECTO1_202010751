@@ -12,6 +12,8 @@ public:
     Disk();
     void mkdisk(int size, char fit, char unit, string path);
     void fdisk(int s , char u,string path,char t,char f,string del,string name,int add);
+    void rep_mbr(string id,string path);
+    void rep_disk(string id, string path);
 };
 
 

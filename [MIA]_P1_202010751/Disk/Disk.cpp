@@ -6,8 +6,12 @@
 
 #include <iostream>
 #include <string>
+#include <regex>
 #include "Disk.h"
+#include "deque"
 #include "../Structs/Structs.h"
+#include "../Global/Global.h"
+
 using namespace std;
 string obtenerFecha();
 string format_day_prop(int field);
@@ -15,7 +19,11 @@ int Buscar_Pextendida(Structs::MBR mbr_data);
 int Buscar_Pnombre(string name,Structs::MBR mbr_data);
 int Obtener_sizeDisco(Structs::MBR mbr_data);
 int ObtenerDesplazamiento_Pnombre(string name,Structs::MBR mbr_data);
-
+int Buscar_Pmontada_id(string id);
+string convertToString(char* a, int size);
+string agregar_dot_mbr(string parametro,string valor,string color);
+void exportDOT(string DOT,string dot_name,string path);
+deque<MountedPartition> mounted_partitions;
 Disk::Disk(){
 }
 
@@ -342,9 +350,149 @@ int ObtenerDesplazamiento_Pnombre(string name,Structs::MBR mbr_data){
 
 
 
+void Disk::rep_disk(string id, string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    FILE *disk_file = fopen(path.c_str(), "rb+");
+    if(disk_file != NULL){
+        string DOT = "digraph D {\n"
+                     "subgraph cluster_0 {\n"
+                     "bgcolor=\"#68d9e2\"\n"
+                     "node [style=\"rounded\" style=filled];\n\n"
+                     "node_A [shape=record    label=\"";
+
+        Structs::MBR mbr_data;
+        fseek(disk_file, 0, SEEK_SET);
+        fread(&mbr_data, sizeof(Structs::MBR), 1, disk_file);
+        int size_total = mbr_data.mbr_tamano;
+        int size_libre_total = size_total;
+
+        DOT += "MBR";
+
+        for(Structs::Partition x: mbr_data.partitions){
+            if(x.name[0]== '~')
+                continue;
+
+            string cadena ="|";
+            if(x.type == 'p'){
+                cadena += "Primaria";
+            }else{
+                cadena += "{Extendida";
+            }
+
+            cadena += "\\n" + convertToString(x.name,16);
+            size_libre_total -= x.size;
+            if(x.type != 'e'){
+                float size_ocupado =  float(x.size*100)/size_total;
+                cadena += "\\n" + to_string(size_ocupado) + "%";
+            }else{
+                int size_libre_e = x.size;
+                Structs::EBR EBR_ccr;
+                fseek(disk_file, x.start, SEEK_SET);
+                fread(&EBR_ccr, sizeof(Structs::EBR), 1, disk_file);
+                int desplazamiento = x.start;
+                if(EBR_ccr.size!=0){
+                    cadena += "|{";
+                    bool primera = true;
+                    do{
+                        if(primera){
+                            cadena +="EBR";
+                            primera = false;
+                        }else{
+                            cadena +="|EBR";
+                        }
+                        cadena +="|Logica \\n";
+                        float size_ocupado =  float(EBR_ccr.size*100)/size_total;
+                        size_libre_e -= EBR_ccr.size;
+                        cadena += to_string(size_ocupado) +  "%";
+
+                        desplazamiento += sizeof(Structs::EBR) + 1 + EBR_ccr.size + 1;
+                        fseek(disk_file, desplazamiento, SEEK_SET);
+                        fread(&EBR_ccr, sizeof(Structs::EBR), 1, disk_file);
+                    }while(EBR_ccr.size != 0);
+
+                    if(size_libre_e >0){
+                        cadena +="|Libre\\n";
+                        float size_ocupado =  float(size_libre_e*100)/size_total;
+                        cadena += to_string(size_ocupado) + "%";
+                    }
+                    cadena += "}}";
+                }
+            }
+            DOT += cadena;
+        }
+        if(size_libre_total >0){
+            DOT +="|Libre\\n";
+            float size_ocupado =  float(size_libre_total*100)/size_total;
+            DOT += to_string(size_ocupado) + "%";
+        }
+
+        DOT += "\"];\n}}";
+        //print(DOT);
+        exportDOT(DOT,"/home/parguet/Escritorio/mbr.dot",path);
+    }else{
+        cout << "\033[1;31m" << "Error: " <<  "no se puedo abrir el disco" << "\033[0m"<< endl;
+        fclose(disk_file);
+        return;
+    }
+
+    fclose(disk_file);
+    cout << "\033[1;32m" <<   "Se ejecuto correctamente el reporte disk" << "\033[0m"<< endl;
+}
 
 
+string convertToString(char* a, int size){
+    int i;
+    string s = "";
+    for (i = 0; i < size; i++) {
+        int temp = (int) tolower(a[i]);
 
+        // if( (temp > 47 and temp < 58)  or  (temp > 96 and temp < 123) or  (temp > 31 and temp < 48)  or  (temp > 57 and temp < 65)){
+        if( (temp > 46 and temp < 58)  or  (temp > 96 and temp < 123) or  temp == 32 or  temp == 58  or  temp == 46 or temp == 45 or temp == 44){
+            s += a[i];
+        }
+    }
+    //s.erase(find(s.begin(), s.end(), '\0'), s.end());
+    return s;
+}
+
+string agregar_dot_mbr(string parametro,string valor,string color){
+    string DOT = "<TR>\n"
+                 "<TD bgcolor=\"" + color + "\">" + parametro +"</TD>\n"
+                                                               "<TD bgcolor=\"" + color + "\">" + valor + "</TD>\n"
+                                                                                                          "</TR>\n\n";
+    return DOT;
+}
+
+void exportDOT(string DOT,string dot_name,string path){
+    fopen(dot_name.c_str(), "w+");
+    FILE *dot_file = fopen(dot_name.c_str(), "w+");
+    fwrite(DOT.c_str(), DOT.length(), 1, dot_file);
+    fclose(dot_file);
+
+    regex extension_pdf("[.][p|P][d|D][f|F]" );
+    string dot_svg;
+    if(regex_search(path,extension_pdf) == 1){
+        dot_svg = "dot -T pdf " + dot_name + " -o " + path;
+    }else{
+        dot_svg = "dot -T svg " + dot_name + " -o " + path;
+    }
+    system(dot_svg.c_str());
+}
+
+
+int Buscar_Pmontada_id(string id){
+    int i_Pmontada = -1;
+    for(int i=0; i< mounted_partitions.size() ; i++){
+        if( mounted_partitions.at(i).id == id ){
+            i_Pmontada = i;
+            return  i_Pmontada;
+        }
+    }
+    return i_Pmontada;
+}
 
 string obtenerFecha() {
     time_t time_now = time(0);
