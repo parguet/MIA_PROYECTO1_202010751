@@ -73,6 +73,12 @@ build CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o: CXX_COMPILER___MI
   OBJECT_DIR = CMakeFiles/_MIA__P1_202010751.dir
   OBJECT_FILE_DIR = CMakeFiles/_MIA__P1_202010751.dir/Structs
 
+build CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o: CXX_COMPILER___MIA__P1_202010751_Debug /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp || cmake_object_order_depends_target__MIA__P1_202010751
+  DEP_FILE = CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++17
+  OBJECT_DIR = CMakeFiles/_MIA__P1_202010751.dir
+  OBJECT_FILE_DIR = CMakeFiles/_MIA__P1_202010751.dir/Global
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target _MIA__P1_202010751
@@ -81,7 +87,7 @@ build CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o: CXX_COMPILER___MI
 #############################################
 # Link the executable _MIA__P1_202010751
 
-build _MIA__P1_202010751: CXX_EXECUTABLE_LINKER___MIA__P1_202010751_Debug CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o
+build _MIA__P1_202010751: CXX_EXECUTABLE_LINKER___MIA__P1_202010751_Debug CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/_MIA__P1_202010751.dir
   POST_BUILD = :

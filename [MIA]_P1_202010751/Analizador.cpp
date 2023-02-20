@@ -15,6 +15,7 @@ void readTokens(string comando);
 void fn_mkdisk();
 void fn_execute();
 void lectura(string path);
+void fn_fdisk();
 
 
 Analizador::Analizador(){
@@ -34,6 +35,7 @@ queue<token> colaTokens;
 void Analizador::analizarTipo(string comando){
     regex mkdisk("[m|M][k|K][d|D][i|I][s|S][k|K]");
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
+    regex fdisk("[f|F][d|D][i|I][s|S][k|K]" );
 
 
     if(regex_search(comando,mkdisk)==1){
@@ -48,6 +50,7 @@ void Analizador::analizarTipo(string comando){
             colaTokens.pop();
         }*/
         fn_mkdisk();
+        cout<<" ---- Termino mkdisk ---- "<<endl;
     }
     else if(regex_search(comando,execute)==1){
         comando = regex_replace(comando,execute,"");
@@ -55,6 +58,16 @@ void Analizador::analizarTipo(string comando){
         cout << comando << endl;
         readTokens(comando);
         fn_execute();
+        cout<<" ---- Termino execute ---- "<<endl;
+
+    }
+    else if(regex_search(comando,fdisk)==1){
+        comando = regex_replace(comando,fdisk,"");
+        cout<<" ---- Se dectecto fdisk ---- "<<endl;
+        cout << comando << endl;
+        readTokens(comando);
+        fn_fdisk();
+        cout<<" ---- Termino fdisk ---- "<<endl;
 
     }
 
@@ -151,6 +164,86 @@ void fn_execute(){
     }
 
     lectura(path);
+}
+
+void fn_fdisk(){
+    string size ="-1";
+    char u ='k';
+    string path;
+    char t = 'p';
+    char f = 'w';
+    string del;
+    string name;
+    string addvalue = "0";
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if (comando_entrada.comando == "size"){
+            size = comando_entrada.valor;
+        }else if (comando_entrada.comando == "unit"){
+            u = comando_entrada.valor.at(0);
+        }else if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if (comando_entrada.comando == "type"){
+            t = comando_entrada.valor.at(0);
+        }else if (comando_entrada.comando == "fit"){
+            f = comando_entrada.valor.at(0);
+        }else if(comando_entrada.comando == "delete"){
+            del = comando_entrada.valor;
+        }else if(comando_entrada.comando == "name"){
+            name = comando_entrada.valor;
+        }else if(comando_entrada.comando == "add"){
+            addvalue = comando_entrada.valor;
+        }else{
+            cout << "\033[1;31m" << "Error: " <<  "Parametro erroneo" << "\033[0m"<< endl;
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if(!(f == 'b' or f == 'w' or f == 'f')){
+        cout << "\033[1;31m" << "Error: " <<  "Parametro de ajuste erroneo" << "\033[0m"<< endl;
+        return;
+    }
+
+    if(!(u == 'b' or u == 'k' or u == 'm')){
+        cout << "\033[1;31m" << "Error: " <<  "Parametro de unidad erroneo" << "\033[0m"<< endl;
+        return;
+    }
+
+    if (path.empty()){
+        cout << "\033[1;31m" << "Error: " <<  "Falto el parametro obligatorio path" << "\033[0m"<< endl;
+        return;
+    }
+    regex dsk("[.][d|D][s|S][k|K]" );
+    if(regex_search(path,dsk) == 0){
+        cout << "\033[1;31m" << "Error: " <<  "Se esperaba extension DSK" << "\033[0m"<< endl;
+        return;
+    }
+
+    if (name.empty()){
+        cout << "\033[1;31m" << "Error: " <<  "Falto el parametro obligatorio name" << "\033[0m"<< endl;
+        return;
+    }
+
+    int s = 0;
+    try {
+        s = stoi(size);
+    }catch(...){
+        cout << "\033[1;31m" << "Error: " <<  "EL valor de s debe ser un digito" << "\033[0m"<< endl;
+        return;
+    }
+
+    int add = 0;
+    try {
+        add = stoi(addvalue);
+    }catch(...){
+        cout << "\033[1;31m" << "Error: " <<  "EL valor de s debe ser un digito" << "\033[0m"<< endl;
+        return;
+    }
+
+    Disk *disck_cmd = new Disk();
+    disck_cmd->fdisk(s,u,path,t,f,del,name,add);
 }
 
 void lectura(string path){

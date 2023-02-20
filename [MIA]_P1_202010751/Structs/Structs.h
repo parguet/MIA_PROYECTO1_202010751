@@ -27,6 +27,15 @@ class Structs {
         char disk_fit;
         Partition partitions[4];
     } MBR;
+
+    typedef struct _EBR {
+        char status = '0';
+        char fit;
+        int start;
+        int size = 0;
+        int next = -1;
+        char name[16];
+    } EBR;
 };
 
 
