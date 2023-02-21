@@ -8,6 +8,7 @@
 #include <regex>
 #include <queue>
 #include "Disk/Disk.h"
+#include "Extras/Extras.h"
 using namespace std;
 void addToken(string cadena,string tipo);
 void analizarTipo(string comando);
@@ -16,6 +17,7 @@ void fn_mkdisk();
 void fn_execute();
 void lectura(string path);
 void fn_fdisk();
+void fn_rmdisk();
 
 
 Analizador::Analizador(){
@@ -34,8 +36,12 @@ comando obtenerComando();
 queue<token> colaTokens;
 void Analizador::analizarTipo(string comando){
     regex mkdisk("[m|M][k|K][d|D][i|I][s|S][k|K]");
-    regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
+    regex rmdisk("[r|R][m|M][d|D][i|I][s|S][k|K]" );
     regex fdisk("[f|F][d|D][i|I][s|S][k|K]" );
+
+
+    regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
+
     regex rep("[r|R][e|E][p|P]" );
 
 
@@ -52,6 +58,15 @@ void Analizador::analizarTipo(string comando){
         }*/
         fn_mkdisk();
         cout<<" ---- Termino mkdisk ---- "<<endl;
+    }
+    else if(regex_search(comando,rmdisk) == 1){
+        comando = regex_replace(comando,rmdisk, "");
+        cout<<" ---- Se dectecto rmdisk ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_rmdisk();
+        cout<<" ---- Termino rmdisk ---- "<<endl;
+
     }
     else if(regex_search(comando,execute)==1){
         comando = regex_replace(comando,execute,"");
@@ -152,6 +167,33 @@ void fn_mkdisk(){
 
     Disk *disck_cmd = new Disk();
     disck_cmd->mkdisk(tamanio,fit,unit,path);
+}
+
+void fn_rmdisk(){
+    string path = "";
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    regex dsk("[.][d|D][s|S][k|K]" );
+    if(regex_search(path,dsk) == 0){
+        printErr("Se esperaba extension DSK");
+        return;
+    }
+    Disk *disck_cmd = new Disk();
+    disck_cmd->rmdisk(path);
 }
 
 void fn_execute(){

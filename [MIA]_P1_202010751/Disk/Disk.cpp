@@ -11,6 +11,7 @@
 #include "deque"
 #include "../Structs/Structs.h"
 #include "../Global/Global.h"
+#include "../Extras/Extras.h"
 
 using namespace std;
 string obtenerFecha();
@@ -58,6 +59,24 @@ void Disk::mkdisk(int size, char fit, char unit, string path){
     }
 
 }
+
+void Disk::rmdisk(string path){
+    FILE *disk_file = fopen(path.c_str(), "rb");
+    if (disk_file != NULL) {
+        if (Warning("DISK_DELETE ¿Estas seguro de querer borrar este disco? (S/n):")) {
+            int removed = remove(path.c_str());
+            if (removed != 0){
+                printErr("No fue posible eliminar el disco.");
+                return;
+            }
+        }
+        fclose(disk_file);
+        printExitoso("Se ejecuto correctamente rmdisk");
+    } else{
+        printErr("El disco no existe.");
+    }
+}
+
 
 
 void Disk::fdisk(int s , char u,string path,char t,char f,string del,string name,int add  ){
