@@ -78,6 +78,145 @@ void Disk::rmdisk(string path){
 }
 
 
+void MontarParticion(string path, string name, char type,int start,int size );
+void MontarParticion(string path, string name, char type,int start,int size ){
+    MountedPartition Particion_montada;
+    Particion_montada.name = name;
+    Particion_montada.path = path;
+    Particion_montada.type = type;
+    Particion_montada.status = '1';
+
+    /* para hacerlo con el nombre del disco
+    regex Disk_name("[a-zA-z]([a-zA-z]|[_]|[0-9])*[.][d][s][k]" );
+    regex extension("[.][d][s][k]([a-zA-z]|[_]|[0-9])*" );
+    smatch m;
+    regex_search(path,m,Disk_name);
+    string match = "";
+    for (auto x : m){
+        match +=x;
+    }
+    int count_aux=1;
+    for(int i=0; i< mounted_partitions.size() ; i++){
+        if(mounted_partitions.at(i).path == path ){
+            count_aux++;
+        }
+    }
+    match = regex_replace(match,extension,"");
+    Particion_montada.id = to_string(19) + to_string(count_aux) + match;*/
+
+    int count_aux=0;
+    for(int i=0; i< mounted_partitions.size() ; i++){
+        if(mounted_partitions.at(i).path == path ){
+            count_aux++;
+        }
+    }
+
+    vector<char> alfabeto = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r','s', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    char letra = alfabeto.at(count_aux);
+
+    count_aux=1;
+    for(int i=0; i< mounted_partitions.size() ; i++){
+        string nameaux = mounted_partitions.at(i).id;
+        int length = nameaux.size();
+        if( nameaux.at(length-1) == letra ){
+            count_aux++;
+        }
+    }
+
+    Particion_montada.id = to_string(19) + to_string(count_aux) + letra;
+    Particion_montada.start = start;
+    Particion_montada.size = size;
+    mounted_partitions.push_back(Particion_montada);
+}
+
+void Disk::mount(string path, string name) {
+    FILE *disk_file = fopen(path.c_str(), "r+b");
+    if (disk_file != NULL) {
+        Structs::MBR mbr_data;
+        fseek(disk_file, 0, SEEK_SET);
+        fread(&mbr_data, sizeof(Structs::MBR), 1, disk_file);
+
+        //Intenado montar normales
+        int i_particion = Buscar_Pnombre(name,mbr_data);
+        if (i_particion != -1){
+            Structs::Partition parctiacion_encontrada;
+            parctiacion_encontrada = mbr_data.partitions[i_particion];
+
+            if (parctiacion_encontrada.type == 'e'){
+                printErr("Err No se puede montar particion extendida");
+                return;
+            }
+
+            int i_encontroMontada = Buscar_Pmontada_name_path(name,path);
+            if (i_encontroMontada != -1){
+                printErr("Err la particion ya esta montada");
+                return;
+            }
+
+            parctiacion_encontrada.status = '1';
+            MontarParticion(path,name,parctiacion_encontrada.type,parctiacion_encontrada.start,parctiacion_encontrada.size);
+            printExitoso("Se ejecuto correctamente Mount");
+        }
+        else{
+            int i_encontroMontada = Buscar_Pmontada_name_path(name,path);
+            if (i_encontroMontada != -1){
+                printErr("Err la particion ya esta montada");
+                return;
+            }
+
+            //Buscar si hay EBR
+            int i_Pextendida = Buscar_Pextendida(mbr_data);
+            if (i_Pextendida == -1){
+                printErr("Err no existe la particion  en el disco (e)");
+                return;
+            }
+
+            Structs::Partition particion_e = mbr_data.partitions[i_Pextendida];
+            int desplazamiento = particion_e.start ;
+
+            Structs::EBR ebr_data;
+            fseek(disk_file, desplazamiento , SEEK_SET);
+            fread(&ebr_data, sizeof(Structs::EBR), 1, disk_file);
+
+            if(ebr_data.size == 0){
+                printErr("Err no existe ninguna particion logica");
+                return;
+            }
+
+            Structs::EBR ebr_last = ebr_data;
+            desplazamiento += sizeof(Structs::EBR) + 1 + ebr_data.size + 1;
+            bool encontrado = false;
+            if(ebr_data.name == name){
+                encontrado = true;
+            }
+            while (!encontrado){
+                fseek(disk_file, desplazamiento , SEEK_SET);
+                fread(&ebr_data, sizeof(Structs::EBR), 1, disk_file);
+                if(ebr_data.size != 0){
+                    ebr_last = ebr_data;
+                    desplazamiento += sizeof(Structs::EBR) + 1 + ebr_data.size + 1;
+                }
+                if(ebr_data.name == name){
+                    encontrado = true;
+                }
+            }
+
+            if(encontrado){
+                MontarParticion(path,name,'l',ebr_last.start,ebr_last.size);
+                printExitoso("Se ejecuto correctamente Mount");
+            }else{
+                printErr("No se encontro particion logica");
+            }
+        }
+        fclose(disk_file);
+    }else{
+        printErr("No se encontro el disco buscado");
+    }
+}
+
+
+
+
 
 void Disk::fdisk(int s , char u,string path,char t,char f,string del,string name,int add  ){
     FILE *disk_file = fopen(path.c_str(), "rb+");

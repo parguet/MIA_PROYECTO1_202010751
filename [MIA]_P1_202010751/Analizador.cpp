@@ -18,6 +18,7 @@ void fn_execute();
 void lectura(string path);
 void fn_fdisk();
 void fn_rmdisk();
+void fn_mount();
 
 
 Analizador::Analizador(){
@@ -38,6 +39,7 @@ void Analizador::analizarTipo(string comando){
     regex mkdisk("[m|M][k|K][d|D][i|I][s|S][k|K]");
     regex rmdisk("[r|R][m|M][d|D][i|I][s|S][k|K]" );
     regex fdisk("[f|F][d|D][i|I][s|S][k|K]" );
+    regex mount("[m|M][o|O][U|u][n|N][t|T]" );
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -66,6 +68,15 @@ void Analizador::analizarTipo(string comando){
         readTokens(comando);
         fn_rmdisk();
         cout<<" ---- Termino rmdisk ---- "<<endl;
+
+    }
+    else if(regex_search(comando,mount) == 1){
+        comando = regex_replace(comando,mount, "");
+        cout<<" ---- Se dectecto mount --analizarTipo-- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_mount();
+        cout<<" ---- Termino mount ---- "<<endl;
 
     }
     else if(regex_search(comando,execute)==1){
@@ -194,6 +205,42 @@ void fn_rmdisk(){
     }
     Disk *disck_cmd = new Disk();
     disck_cmd->rmdisk(path);
+}
+
+void fn_mount(){
+    string name;
+    string path;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "name"){
+            name = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+    regex dsk("[.][d|D][s|S][k|K]" );
+    if(regex_search(path,dsk) == 0){
+        printErr("Se esperaba extension DSK");
+        return;
+    }
+
+    if (name.empty()){
+        printErr("Falto el parametro obligatorio name");
+        return;
+    }
+
+    Disk *disck_cmd = new Disk();
+    disck_cmd->mount(path,name);
 }
 
 void fn_execute(){

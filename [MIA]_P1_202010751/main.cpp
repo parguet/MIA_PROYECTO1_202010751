@@ -7,6 +7,7 @@ int main() {
     //home/parguet/Escritorio
     //execute >path=/execute >path=/home/parguet/Escritorio/prueba.eea
     //rmdisk >path=/home/parguet/Escritorio/Disco1.dsk
+    //mount >path=/home/parguet/Escritorio/Disco1.dsk >name=Part1
     cout<<" ---- Bienvenido al Sistema de Archivos de  - 202010751 ---- "<<endl;
     regex comentario("[#][^\n]*");
     regex flecha("->");

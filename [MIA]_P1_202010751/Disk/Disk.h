@@ -13,6 +13,8 @@ public:
     void mkdisk(int size, char fit, char unit, string path);
     void rmdisk(string path);
     void fdisk(int s , char u,string path,char t,char f,string del,string name,int add);
+    void mount(string path, string name);
+
     void rep_mbr(string id,string path);
     void rep_disk(string id, string path);
 };
