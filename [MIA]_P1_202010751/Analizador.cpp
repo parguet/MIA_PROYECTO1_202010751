@@ -9,6 +9,7 @@
 #include <queue>
 #include "Disk/Disk.h"
 #include "Extras/Extras.h"
+#include "FileSystem/FileSystem.h"
 using namespace std;
 void addToken(string cadena,string tipo);
 void analizarTipo(string comando);
@@ -20,6 +21,7 @@ void fn_fdisk();
 void fn_rmdisk();
 void fn_mount();
 void  fn_unmount();
+void fn_mkfs();
 
 
 Analizador::Analizador(){
@@ -42,6 +44,7 @@ void Analizador::analizarTipo(string comando){
     regex fdisk("[f|F][d|D][i|I][s|S][k|K]" );
     regex mount("[m|M][o|O][U|u][n|N][t|T]" );
     regex unmount("[u|U][n|N][m|M][o|O][U|u][n|N][t|T]" );
+    regex mkfs("[m|M][k|K][f|F][s|S]" );
 
 
 
@@ -89,6 +92,15 @@ void Analizador::analizarTipo(string comando){
         readTokens(comando);
         fn_mount();
         cout<<" ---- Termino mount ---- "<<endl;
+
+    }
+    else if(regex_search(comando,mkfs) == 1){
+        comando = regex_replace(comando,mkfs, "");
+        cout<<" ---- Se dectecto mkfs ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_mkfs();
+        cout<<" ---- Termino mkfs ---- "<<endl;
 
     }
     else if(regex_search(comando,execute)==1){
@@ -276,6 +288,46 @@ void fn_unmount(){
     Disk *disck_cmd = new Disk();
     disck_cmd->unmount(id);
 }
+
+void fn_mkfs(){
+    string id;
+    string type = "full";
+    string fs = "2fs";
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "type"){
+            type = comando_entrada.valor;
+        }else if(comando_entrada.comando == "id"){
+            id = comando_entrada.valor;
+        }else if(comando_entrada.comando == "fs"){
+            fs = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (id.empty()){
+        printErr("Falto el parametro obligatorio id");
+        return;
+    }
+
+    if(type != "full"){
+        printErr("El unico parametro que puede tener type es full");
+        return;
+    }
+
+    if(!(fs == "2fs" or fs == "3fs")){
+        printErr("Parametro erroneo de fs");
+        return;
+    }
+
+    Filesystem *file_cmd = new Filesystem();
+    file_cmd->mkfs(id,type,fs);
+}
+
 
 void fn_execute(){
     string path;

@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/222/bin/cmake/linux/x64/bin/cmake
+CMAKE_COMMAND = /snap/clion/229/bin/cmake/linux/x64/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/222/bin/cmake/linux/x64/bin/cmake -E rm -f
+RM = /snap/clion/229/bin/cmake/linux/x64/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/222/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/229/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/222/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/229/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -201,6 +201,30 @@ Extras/Extras.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.s
 .PHONY : Extras/Extras.cpp.s
 
+FileSystem/FileSystem.o: FileSystem/FileSystem.cpp.o
+.PHONY : FileSystem/FileSystem.o
+
+# target to build an object file
+FileSystem/FileSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o
+.PHONY : FileSystem/FileSystem.cpp.o
+
+FileSystem/FileSystem.i: FileSystem/FileSystem.cpp.i
+.PHONY : FileSystem/FileSystem.i
+
+# target to preprocess a source file
+FileSystem/FileSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.i
+.PHONY : FileSystem/FileSystem.cpp.i
+
+FileSystem/FileSystem.s: FileSystem/FileSystem.cpp.s
+.PHONY : FileSystem/FileSystem.s
+
+# target to generate assembly for a file
+FileSystem/FileSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.s
+.PHONY : FileSystem/FileSystem.cpp.s
+
 Global/Global.o: Global/Global.cpp.o
 .PHONY : Global/Global.o
 
@@ -291,6 +315,9 @@ help:
 	@echo "... Extras/Extras.o"
 	@echo "... Extras/Extras.i"
 	@echo "... Extras/Extras.s"
+	@echo "... FileSystem/FileSystem.o"
+	@echo "... FileSystem/FileSystem.i"
+	@echo "... FileSystem/FileSystem.s"
 	@echo "... Global/Global.o"
 	@echo "... Global/Global.i"
 	@echo "... Global/Global.s"

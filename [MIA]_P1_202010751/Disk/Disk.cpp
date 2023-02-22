@@ -329,7 +329,7 @@ void MontarParticion(string path, string name, char type,int start,int size ){
     Particion_montada.type = type;
     Particion_montada.status = '1';
 
-    /* para hacerlo con el nombre del disco
+    //para hacerlo con el nombre del disco
     regex Disk_name("[a-zA-z]([a-zA-z]|[_]|[0-9])*[.][d][s][k]" );
     regex extension("[.][d][s][k]([a-zA-z]|[_]|[0-9])*" );
     smatch m;
@@ -345,9 +345,9 @@ void MontarParticion(string path, string name, char type,int start,int size ){
         }
     }
     match = regex_replace(match,extension,"");
-    Particion_montada.id = to_string(19) + to_string(count_aux) + match;*/
-
-    int count_aux=0;
+    Particion_montada.id = to_string(51) + to_string(count_aux) + match;
+    printExitoso("Id mount : "+ Particion_montada.id);
+    /*int count_aux=0;
     for(int i=0; i< mounted_partitions.size() ; i++){
         if(mounted_partitions.at(i).path == path ){
             count_aux++;
@@ -366,7 +366,7 @@ void MontarParticion(string path, string name, char type,int start,int size ){
         }
     }
 
-    Particion_montada.id = to_string(19) + to_string(count_aux) + letra;
+    Particion_montada.id = to_string(19) + to_string(count_aux) + letra; */
     Particion_montada.start = start;
     Particion_montada.size = size;
     mounted_partitions.push_back(Particion_montada);
