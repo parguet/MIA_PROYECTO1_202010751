@@ -8,8 +8,20 @@
 #include <iostream>
 using namespace std;
 
+deque<MountedPartition> mounted_partitions;
 vector<string> loss_list;
 struct Usuario usr_sesion;
+
+int Buscar_Pmontada_id(string id){
+    int i_Pmontada = -1;
+    for(int i=0; i< mounted_partitions.size() ; i++){
+        if( mounted_partitions.at(i).id == id ){
+            i_Pmontada = i;
+            return  i_Pmontada;
+        }
+    }
+    return i_Pmontada;
+}
 
 int Buscar_Pmontada_name_path(string name,string path){
     int i_Pmontada = -1;

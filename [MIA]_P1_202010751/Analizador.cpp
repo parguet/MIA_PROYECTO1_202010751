@@ -19,6 +19,7 @@ void lectura(string path);
 void fn_fdisk();
 void fn_rmdisk();
 void fn_mount();
+void  fn_unmount();
 
 
 Analizador::Analizador(){
@@ -40,6 +41,8 @@ void Analizador::analizarTipo(string comando){
     regex rmdisk("[r|R][m|M][d|D][i|I][s|S][k|K]" );
     regex fdisk("[f|F][d|D][i|I][s|S][k|K]" );
     regex mount("[m|M][o|O][U|u][n|N][t|T]" );
+    regex unmount("[u|U][n|N][m|M][o|O][U|u][n|N][t|T]" );
+
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -68,6 +71,15 @@ void Analizador::analizarTipo(string comando){
         readTokens(comando);
         fn_rmdisk();
         cout<<" ---- Termino rmdisk ---- "<<endl;
+
+    }
+    else if(regex_search(comando,unmount) == 1){
+        comando = regex_replace(comando,unmount, "");
+        cout<<" ---- Se dectecto unmount ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_unmount();
+        cout<<" ---- unTermino unmount ---- "<<endl;
 
     }
     else if(regex_search(comando,mount) == 1){
@@ -241,6 +253,28 @@ void fn_mount(){
 
     Disk *disck_cmd = new Disk();
     disck_cmd->mount(path,name);
+}
+
+void fn_unmount(){
+    string id;
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "id"){
+            id = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (id.empty()){
+        printErr("Falto el parametro obligatorio id");
+        return;
+    }
+
+    Disk *disck_cmd = new Disk();
+    disck_cmd->unmount(id);
 }
 
 void fn_execute(){
