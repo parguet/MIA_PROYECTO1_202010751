@@ -1,5 +1,5 @@
 CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o: \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/9/iostream \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
@@ -202,4 +202,4 @@ CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o: \
  /usr/include/c++/9/bits/parse_numbers.h \
  /usr/include/c++/9/bits/std_mutex.h \
  /usr/include/c++/9/bits/unique_lock.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.h
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.h

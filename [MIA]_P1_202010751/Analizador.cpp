@@ -10,6 +10,8 @@
 #include "Disk/Disk.h"
 #include "Extras/Extras.h"
 #include "FileSystem/FileSystem.h"
+#include "Users/Users.h"
+
 using namespace std;
 void addToken(string cadena,string tipo);
 void analizarTipo(string comando);
@@ -22,6 +24,7 @@ void fn_rmdisk();
 void fn_mount();
 void  fn_unmount();
 void fn_mkfs();
+void fn_login();
 
 
 Analizador::Analizador(){
@@ -45,7 +48,7 @@ void Analizador::analizarTipo(string comando){
     regex mount("[m|M][o|O][U|u][n|N][t|T]" );
     regex unmount("[u|U][n|N][m|M][o|O][U|u][n|N][t|T]" );
     regex mkfs("[m|M][k|K][f|F][s|S]" );
-
+    regex login("[l|L][o|O][g|G][I|i][N|n]" );
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -103,6 +106,17 @@ void Analizador::analizarTipo(string comando){
         cout<<" ---- Termino mkfs ---- "<<endl;
 
     }
+    else if(regex_search(comando,login) == 1){
+        comando = regex_replace(comando,login, "");
+        cout<<" ---- Se dectecto login ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_login();
+        cout<<" ---- Termino login ---- "<<endl;
+
+    }
+
+
     else if(regex_search(comando,execute)==1){
         comando = regex_replace(comando,execute,"");
         cout<<" ---- Se dectecto execute ---- "<<endl;
@@ -327,6 +341,48 @@ void fn_mkfs(){
     Filesystem *file_cmd = new Filesystem();
     file_cmd->mkfs(id,type,fs);
 }
+
+void fn_login(){
+    string usr;
+    string pass;
+    string id;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "user"){
+            usr = comando_entrada.valor;
+        }else if(comando_entrada.comando == "pass"){
+            pass = comando_entrada.valor;
+        }else if(comando_entrada.comando == "id"){
+            id = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (usr.empty()){
+        printErr("Falto el parametro obligatorio usr");
+        return;
+    }
+
+    if (pass.empty()){
+        printErr("Falto el parametro obligatorio pass");
+        return;
+    }
+
+    if (id.empty()){
+        printErr("Falto el parametro obligatorio id");
+        return;
+    }
+
+    Users *user_cmd = new Users();
+    user_cmd->login(usr,pass,id);
+
+}
+
+
 
 
 void fn_execute(){

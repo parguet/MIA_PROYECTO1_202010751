@@ -4,7 +4,9 @@
 
 #ifndef _MIA__P1_202010751_STRUCTS_H
 #define _MIA__P1_202010751_STRUCTS_H
-
+#include <string>
+#include <ctime>
+#include "../Global//Global.h"
 
 class Structs {
     public:
@@ -97,6 +99,10 @@ class Structs {
         int ultimo = 1;
         Content_J contenido[50];
     } Journaling;
+
+    static int BuscarInodo(string path,MountedPartition particionmontada,Superblock superblick,FILE *disk_file);
+    static string LecturaInodo(int indice_inodo, Superblock superblock,FILE *disk_file);
+
 
 };
 

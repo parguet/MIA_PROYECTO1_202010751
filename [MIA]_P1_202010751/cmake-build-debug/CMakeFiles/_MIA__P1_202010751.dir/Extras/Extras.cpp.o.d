@@ -1,7 +1,7 @@
 CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o: \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp \
  /usr/include/stdc-predef.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.h \
  /usr/include/c++/9/string \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \

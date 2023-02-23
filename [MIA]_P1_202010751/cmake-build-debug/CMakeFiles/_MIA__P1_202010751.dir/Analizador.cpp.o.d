@@ -1,7 +1,7 @@
 CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o: \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp \
  /usr/include/stdc-predef.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.h \
  /usr/include/c++/9/string \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
@@ -211,6 +211,7 @@ CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o: \
  /usr/include/c++/9/bits/std_mutex.h \
  /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/queue \
  /usr/include/c++/9/bits/stl_queue.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.h
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Users/Users.h

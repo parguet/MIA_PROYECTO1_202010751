@@ -513,7 +513,7 @@ int Obtener_sizeDisco(Structs::MBR mbr_data){
     }
     return size;
 }
-
+int ObtenerDesplazamiento_Pnombre(string name,Structs::MBR mbr_data);
 int ObtenerDesplazamiento_Pnombre(string name,Structs::MBR mbr_data){
     int desplazamiento = 1 + sizeof(mbr_data);
     for (Structs::Partition p_ccr : mbr_data.partitions){

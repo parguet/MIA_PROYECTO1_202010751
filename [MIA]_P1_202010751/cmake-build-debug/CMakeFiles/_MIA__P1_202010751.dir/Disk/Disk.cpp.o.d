@@ -1,5 +1,5 @@
 CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o: \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp \
  /usr/include/stdc-predef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -201,7 +201,8 @@ CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o: \
  /usr/include/c++/9/bits/parse_numbers.h \
  /usr/include/c++/9/bits/std_mutex.h \
  /usr/include/c++/9/bits/unique_lock.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/../Structs/Structs.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/../Global/Global.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/../Extras/Extras.h
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/../Structs/Structs.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/../Structs/../Global//Global.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/../Global/Global.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/../Extras/Extras.h

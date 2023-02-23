@@ -53,10 +53,10 @@ RM = /snap/clion/229/bin/cmake/linux/x64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751
+CMAKE_SOURCE_DIR = /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug
+CMAKE_BINARY_DIR = /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/_MIA__P1_202010751.dir/depend.make
@@ -70,102 +70,116 @@ include CMakeFiles/_MIA__P1_202010751.dir/progress.make
 include CMakeFiles/_MIA__P1_202010751.dir/flags.make
 
 CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
-CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o: /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp
+CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp
 CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o -c /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp
 
 CMakeFiles/_MIA__P1_202010751.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp > CMakeFiles/_MIA__P1_202010751.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp > CMakeFiles/_MIA__P1_202010751.dir/main.cpp.i
 
 CMakeFiles/_MIA__P1_202010751.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp -o CMakeFiles/_MIA__P1_202010751.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp -o CMakeFiles/_MIA__P1_202010751.dir/main.cpp.s
 
 CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
-CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o: /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp
+CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp
 CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o -c /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp
 
 CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp > CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp > CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.i
 
 CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.s
 
 CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
-CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o: /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp
+CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp
 CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o -c /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp
 
 CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp > CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp > CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.i
 
 CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.s
 
 CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
-CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o: /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp
+CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp
 CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o -c /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp
 
 CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp > CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp > CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.i
 
 CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.s
 
 CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
-CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o: /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp
+CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp
 CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o -c /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp
 
 CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp > CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp > CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.i
 
 CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.s
 
 CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
-CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o: /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp
+CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp
 CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o -c /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp
 
 CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp > CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp > CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.i
 
 CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.s
 
 CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
-CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o: /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp
+CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp
 CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o -c /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp
 
 CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp > CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp > CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.i
 
 CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp -o CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp -o CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.s
+
+CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/flags.make
+CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o: /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Users/Users.cpp
+CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o: CMakeFiles/_MIA__P1_202010751.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o -MF CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o.d -o CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o -c /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Users/Users.cpp
+
+CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Users/Users.cpp > CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.i
+
+CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Users/Users.cpp -o CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.s
 
 # Object files for target _MIA__P1_202010751
 _MIA__P1_202010751_OBJECTS = \
@@ -175,7 +189,8 @@ _MIA__P1_202010751_OBJECTS = \
 "CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o" \
 "CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o" \
 "CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o" \
-"CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o"
+"CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o" \
+"CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o"
 
 # External object files for target _MIA__P1_202010751
 _MIA__P1_202010751_EXTERNAL_OBJECTS =
@@ -187,9 +202,10 @@ _MIA__P1_202010751: CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o
 _MIA__P1_202010751: CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o
 _MIA__P1_202010751: CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o
 _MIA__P1_202010751: CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o
+_MIA__P1_202010751: CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o
 _MIA__P1_202010751: CMakeFiles/_MIA__P1_202010751.dir/build.make
 _MIA__P1_202010751: CMakeFiles/_MIA__P1_202010751.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable _MIA__P1_202010751"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable _MIA__P1_202010751"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/_MIA__P1_202010751.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -201,6 +217,6 @@ CMakeFiles/_MIA__P1_202010751.dir/clean:
 .PHONY : CMakeFiles/_MIA__P1_202010751.dir/clean
 
 CMakeFiles/_MIA__P1_202010751.dir/depend:
-	cd /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751 /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751 /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/_MIA__P1_202010751.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751 /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751 /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/_MIA__P1_202010751.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/_MIA__P1_202010751.dir/depend
 

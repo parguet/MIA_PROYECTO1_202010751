@@ -1,7 +1,7 @@
 CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o: \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp \
  /usr/include/stdc-predef.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.h \
  /usr/include/c++/9/string \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
@@ -125,15 +125,17 @@ CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o: \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/9/bits/basic_string.tcc \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/../Extras//Extras.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/../Structs//Structs.h \
- /home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/../Global//Global.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/../Extras//Extras.h \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/../Structs//Structs.h \
+ /usr/include/c++/9/ctime \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/../Structs//../Global//Global.h \
  /usr/include/c++/9/deque /usr/include/c++/9/bits/stl_construct.h \
  /usr/include/c++/9/bits/stl_uninitialized.h /usr/include/c++/9/utility \
  /usr/include/c++/9/bits/stl_relops.h /usr/include/c++/9/bits/stl_deque.h \
  /usr/include/c++/9/bits/deque.tcc /usr/include/c++/9/vector \
  /usr/include/c++/9/bits/stl_vector.h \
  /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
+ /home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/../Global//Global.h \
  /usr/include/string.h /usr/include/strings.h /usr/include/c++/9/cmath \
  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \

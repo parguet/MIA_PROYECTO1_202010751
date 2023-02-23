@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/CMakeLists.txt"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/CMakeLists.txt"
   "CMakeFiles/3.24.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.24.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.24.2/CMakeSystem.cmake"

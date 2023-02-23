@@ -8,13 +8,14 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o.d"
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o.d"
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o.d"
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp" "CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o.d"
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o.d"
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o.d"
-  "/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp" "CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Analizador.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Analizador.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Disk/Disk.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Disk/Disk.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp" "CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/FileSystem/FileSystem.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Global/Global.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Global/Global.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Structs/Structs.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Structs/Structs.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Users/Users.cpp" "CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/Users/Users.cpp.o.d"
+  "/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/main.cpp" "CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o" "gcc" "CMakeFiles/_MIA__P1_202010751.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

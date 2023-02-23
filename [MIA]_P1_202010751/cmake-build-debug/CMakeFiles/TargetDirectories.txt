@@ -1,3 +1,3 @@
-/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/_MIA__P1_202010751.dir
-/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/parguet/Escritorio/PROGRA/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/_MIA__P1_202010751.dir
+/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/cmake-build-debug/CMakeFiles/rebuild_cache.dir
