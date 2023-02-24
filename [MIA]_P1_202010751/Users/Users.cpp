@@ -167,3 +167,63 @@ void Users::mkgrp(string name) {
     fclose(rfile);
     printExitoso("SE ejecuto correctamente mkgrp");
 }
+
+void Users::rmgrp(string name) {
+    if(usr_sesion.uid == -1 or usr_sesion.usr != "root"){
+        printErr("Se necesita una sesion iniciada y se necesita ser el usuario root");
+        return;
+    }
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    string rutatxt = "/user.txt";
+    int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro el inodo");
+        fclose(rfile);
+        return;
+    }
+
+    string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+
+    if(cadena_leida.empty()){
+        printErr("No se pudo leer archivo user.txt");
+        fclose(rfile);
+        return;
+    }
+
+    vector<string> div_lineas = split(cadena_leida,'\n');
+    string cadena_leida_act;
+    int contador = 1;
+    for (string line:div_lineas) {
+        if(line.empty())
+            continue;
+
+        if (line[2] == 'g' || line[2] == 'G') {
+            vector<string> in = split(line, ',');
+            if(in[2] == name){
+                cadena_leida_act += "0,G," + name + "\n";
+            }else{
+                cadena_leida_act += line + "\n";
+            }
+            contador++;
+        }else{
+            cadena_leida_act += line + "\n";
+        }
+
+    }
+
+    int int_retorno = Structs::EscrituraInodo(particion_montada,no_inodo,superblock,cadena_leida_act,rfile);
+    if(int_retorno == -1){
+        printErr("Hubo un error en la actualizaciond el archivo");
+        fclose(rfile);
+        return;
+    }
+    fclose(rfile);
+    printExitoso("SE ejecuto correctamente rmgrp");
+}
