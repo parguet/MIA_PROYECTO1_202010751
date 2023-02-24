@@ -92,3 +92,78 @@ void Users::login(string usr, string pass, string id) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente login");
 }
+
+void Users::logout() {
+    if (usr_sesion.uid != -1){
+        usr_sesion.uid = -1;
+        printExitoso("Se ejecuto correctamente logout");
+    }else{
+        printErr("Necesita haber una sesion iniciada");
+    }
+}
+
+void Users::mkgrp(string name) {
+    if(usr_sesion.uid == -1 or usr_sesion.usr != "root"){
+        printErr("Se necesita una sesion iniciada y se necesita ser el usuario root");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+
+    string rutatxt = "/user.txt";
+    int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro inodo");
+        fclose(rfile);
+        return;
+    }
+
+    string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+
+    if(cadena_leida.empty()){
+        printErr("No se pudo leer archivo user.txt");
+        fclose(rfile);
+        return;
+    }
+
+    printExitoso(cadena_leida);
+    vector<string> div_lineas = split(cadena_leida,'\n');
+    int contador = 1;
+    for (string line:div_lineas) {
+        if (line.empty())
+            break;
+
+        if (line[2] == 'g' || line[2] == 'G') {
+            vector<string> in = split(line, ',');
+            if(in[2] == name){
+                contador = -1;
+                break;
+            }
+            contador++;
+        }
+    }
+    if(contador == -1){
+        printErr("No se pudo crear grupo, nombre repetido");
+        fclose(rfile);
+        return;
+    }
+    string grupo_new = to_string(contador) + ",G," + name + "\n";
+    cadena_leida += grupo_new;
+
+    int int_retorno = Structs::EscrituraInodo(particion_montada,no_inodo,superblock,cadena_leida,rfile);
+    if(int_retorno == -1){
+        printErr("Hubo un error en la actualizaciond el archivo");
+        fclose(rfile);
+        return;
+    }
+
+    fclose(rfile);
+    printExitoso("SE ejecuto correctamente mkgrp");
+}

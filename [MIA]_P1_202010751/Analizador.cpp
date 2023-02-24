@@ -25,6 +25,8 @@ void fn_mount();
 void  fn_unmount();
 void fn_mkfs();
 void fn_login();
+void fn_logout();
+void fn_mkgrp();
 
 
 Analizador::Analizador(){
@@ -49,7 +51,8 @@ void Analizador::analizarTipo(string comando){
     regex unmount("[u|U][n|N][m|M][o|O][U|u][n|N][t|T]" );
     regex mkfs("[m|M][k|K][f|F][s|S]" );
     regex login("[l|L][o|O][g|G][I|i][N|n]" );
-
+    regex logout("[l|L][o|O][g|G][o|O][u|U][t|T]" );
+    regex mkgrp("[m|M][k|K][g|G][r|R][p|P]" );
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
 
@@ -115,6 +118,25 @@ void Analizador::analizarTipo(string comando){
         cout<<" ---- Termino login ---- "<<endl;
 
     }
+    else if(regex_search(comando,logout) == 1){
+        comando = regex_replace(comando,logout, "");
+        cout<<" ---- Se dectecto logout ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_logout();
+        cout<<" ---- Termino logout ---- "<<endl;
+
+    }
+    else if(regex_search(comando,mkgrp) == 1){
+        comando = regex_replace(comando,mkgrp, "");
+        cout<<" ---- Se dectecto mkgrp ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_mkgrp();
+        cout<<" ---- Termino mkgrp ---- "<<endl;
+
+    }
+
 
 
     else if(regex_search(comando,execute)==1){
@@ -382,7 +404,32 @@ void fn_login(){
 
 }
 
+void fn_logout(){
+    Users *user_cmd = new Users();
+    user_cmd->logout();
+}
 
+void fn_mkgrp(){
+    string name;
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "name"){
+            name = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (name.empty()){
+        printErr("Falto el parametro obligatorio name");
+        return;
+    }
+
+    Users *usuarios_cmd = new Users();
+    usuarios_cmd->mkgrp(name);
+}
 
 
 void fn_execute(){
