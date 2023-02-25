@@ -227,3 +227,140 @@ void Users::rmgrp(string name) {
     fclose(rfile);
     printExitoso("SE ejecuto correctamente rmgrp");
 }
+
+void Users::mkusr(string usr, string pass, string grp){
+    if(usr_sesion.uid == -1 or usr_sesion.usr != "root"){
+        printErr("Se necesita una sesion iniciada y se necesita ser el usuario root");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    string rutatxt = "/user.txt";
+    int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro archivo");
+        fclose(rfile);
+        return;
+    }
+
+    string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+    printExitoso(cadena_leida);
+    if(cadena_leida.empty()){
+        printErr("No se pudo leer archivo");
+        fclose(rfile);
+        return;
+    }
+
+    vector<string> div_lineas = split(cadena_leida,'\n');
+    int contador = 1;
+    bool exite_grp = false;
+    for (string line:div_lineas) {
+        if (line[2] == 'u' || line[2] == 'U') {
+            vector<string> in = split(line, ',');
+            if(in[3] == usr){
+                contador = -1;
+                break;
+            }
+            contador++;
+        }
+        if(!exite_grp){
+            if (line[2] == 'g' || line[2] == 'G') {
+                vector<string> in = split(line, ',');
+                if(in[2] == grp){
+                    exite_grp = true;
+                }
+            }
+        }
+
+    }
+    if(contador == -1){
+        printErr("No se pudo crear usurio, usuario repetido");
+        fclose(rfile);
+        return;
+    }
+    if(!exite_grp){
+        printErr("No se pudo crear usurio, grupo inexistente");
+        fclose(rfile);
+        return;
+    }
+    string usr_new = to_string(contador) + ",U," + grp + "," + usr + "," + pass + "\n";
+    cadena_leida += usr_new;
+
+    int int_retorno = Structs::EscrituraInodo(particion_montada,no_inodo,superblock,cadena_leida,rfile);
+    if(int_retorno == -1){
+        printErr("Hubo un error en la actualizaciond el archivo");
+        fclose(rfile);
+        return;
+    }
+    fclose(rfile);
+    printExitoso("SE ejecuto correctamente mkusr");
+}
+
+void Users::rmusr(string name) {
+    if(usr_sesion.uid == -1 or usr_sesion.usr != "root"){
+        printErr("Se necesita una sesion iniciada y se necesita ser el usuario root");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    string rutatxt = "/user.txt";
+    int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro el inodo");
+        fclose(rfile);
+        return;
+    }
+
+    string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+
+    if(cadena_leida.empty()){
+        printErr("No se pudo leer archivo user.txt");
+        fclose(rfile);
+        return;
+    }
+    printExitoso(cadena_leida);
+
+    vector<string> div_lineas = split(cadena_leida,'\n');
+    string cadena_leida_act;
+    int contador = 1;
+    for (string line:div_lineas) {
+        if(line.empty())
+            continue;
+
+        if (line[2] == 'u' || line[2] == 'U') {
+            vector<string> in = split(line, ',');
+            if(in[3] == name){
+                cadena_leida_act += "0,U," + in[2] + "," + in[3] + "," + in[4] + "\n";
+            }else{
+                cadena_leida_act += line + "\n";
+            }
+            contador++;
+        }else{
+            cadena_leida_act += line + "\n";
+        }
+
+    }
+
+    int int_retorno = Structs::EscrituraInodo(particion_montada,no_inodo,superblock,cadena_leida_act,rfile);
+    if(int_retorno == -1){
+        printErr("Hubo un error en la actualizaciond el archivo");
+        fclose(rfile);
+        return;
+    }
+    fclose(rfile);
+    printExitoso("SE ejecuto correctamente rmusr");
+}

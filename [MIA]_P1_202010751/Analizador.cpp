@@ -28,6 +28,8 @@ void fn_login();
 void fn_logout();
 void fn_mkgrp();
 void fn_rmgrp();
+void fn_mkusr();
+void fn_rmusr();
 
 
 Analizador::Analizador(){
@@ -55,6 +57,8 @@ void Analizador::analizarTipo(string comando){
     regex logout("[l|L][o|O][g|G][o|O][u|U][t|T]" );
     regex mkgrp("[m|M][k|K][g|G][r|R][p|P]" );
     regex rmgrp("[r|R][m|M][g|G][r|R][p|P]" );
+    regex mkusr("[m|M][k|K][u|U][s|S][r|R]" );
+    regex rmusr("[r|R][m|M][u|U][s|S][r|R]" );
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
 
@@ -147,6 +151,26 @@ void Analizador::analizarTipo(string comando){
         cout<<" ---- Termino rmgrp ---- "<<endl;
 
     }
+    else if(regex_search(comando,mkusr) == 1){
+        comando = regex_replace(comando,mkusr, "");
+        cout<<" ---- Se dectecto mkusr ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_mkusr();
+        cout<<" ---- Termino mkusr ---- "<<endl;
+
+    }
+    else if(regex_search(comando,rmusr) == 1){
+        comando = regex_replace(comando,rmusr, "");
+        cout<<" ---- Se dectecto rmusr ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_rmusr();
+        cout<<" ---- Termino rmusr ---- "<<endl;
+
+    }
+
+
 
 
 
@@ -464,6 +488,73 @@ void fn_rmgrp(){
     Users *usuarios_cmd = new Users();
     usuarios_cmd->rmgrp(name);
 }
+
+void fn_mkusr(){
+    string usr;
+    string pass;
+    string grp;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "user"){
+            usr = comando_entrada.valor;
+        }else if(comando_entrada.comando == "pass"){
+            pass = comando_entrada.valor;
+        }else if(comando_entrada.comando == "grp"){
+            grp = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (usr.empty()){
+        printErr("Falto el parametro obligatorio usr");
+        return;
+    }
+
+    if (pass.empty()){
+        printErr("Falto el parametro obligatorio pass");
+        return;
+    }
+
+    if (grp.empty()){
+        printErr("Falto el parametro obligatorio grp");
+        return;
+    }
+
+    if(usr.size() > 10 or pass.size() > 10 or grp.size() > 10){
+        printErr("Err el maximo para los parametros de mkusr es de 10 caracteres");
+        return;
+    }
+
+    Users *user_cmd = new Users();
+    user_cmd->mkusr(usr,pass,grp);
+}
+
+void fn_rmusr(){
+    string usr;
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "user"){
+            usr = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (usr.empty()){
+        printErr("Falto el parametro obligatorio usr");
+        return;
+    }
+
+    Users *user_cmd = new Users();
+    user_cmd->rmusr(usr);
+}
+
 
 
 
