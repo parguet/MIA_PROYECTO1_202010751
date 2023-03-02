@@ -201,6 +201,30 @@ Extras/Extras.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/Extras/Extras.cpp.s
 .PHONY : Extras/Extras.cpp.s
 
+FileManager/FileManager.o: FileManager/FileManager.cpp.o
+.PHONY : FileManager/FileManager.o
+
+# target to build an object file
+FileManager/FileManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/FileManager/FileManager.cpp.o
+.PHONY : FileManager/FileManager.cpp.o
+
+FileManager/FileManager.i: FileManager/FileManager.cpp.i
+.PHONY : FileManager/FileManager.i
+
+# target to preprocess a source file
+FileManager/FileManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/FileManager/FileManager.cpp.i
+.PHONY : FileManager/FileManager.cpp.i
+
+FileManager/FileManager.s: FileManager/FileManager.cpp.s
+.PHONY : FileManager/FileManager.s
+
+# target to generate assembly for a file
+FileManager/FileManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_MIA__P1_202010751.dir/build.make CMakeFiles/_MIA__P1_202010751.dir/FileManager/FileManager.cpp.s
+.PHONY : FileManager/FileManager.cpp.s
+
 FileSystem/FileSystem.o: FileSystem/FileSystem.cpp.o
 .PHONY : FileSystem/FileSystem.o
 
@@ -339,6 +363,9 @@ help:
 	@echo "... Extras/Extras.o"
 	@echo "... Extras/Extras.i"
 	@echo "... Extras/Extras.s"
+	@echo "... FileManager/FileManager.o"
+	@echo "... FileManager/FileManager.i"
+	@echo "... FileManager/FileManager.s"
 	@echo "... FileSystem/FileSystem.o"
 	@echo "... FileSystem/FileSystem.i"
 	@echo "... FileSystem/FileSystem.s"

@@ -103,6 +103,10 @@ class Structs {
     static int BuscarInodo(string path,MountedPartition particionmontada,Superblock superblick,FILE *disk_file);
     static string LecturaInodo(int indice_inodo, Superblock superblock,FILE *disk_file);
     static int EscrituraInodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock, string cadena,FILE *disk_file );
+    static int Buscar_CreandoInodo(string path,MountedPartition particionmontada,Superblock superblick,FILE *disk_file);
+    static int Crear_folder_inodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock,string nombrefolder,FILE *disk_file);
+    static int Crear_txt_inodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock,string cadena_txt,string nombretxt,FILE *disk_file);
+    static void Update_journaling(string operacion,string path,string content,MountedPartition partition_montada, Structs::Superblock superblock,FILE *disk_file);
 
 
 };

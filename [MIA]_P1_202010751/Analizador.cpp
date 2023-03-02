@@ -11,6 +11,7 @@
 #include "Extras/Extras.h"
 #include "FileSystem/FileSystem.h"
 #include "Users/Users.h"
+#include "FileManager/FileManager.h"
 
 using namespace std;
 void addToken(string cadena,string tipo);
@@ -30,6 +31,7 @@ void fn_mkgrp();
 void fn_rmgrp();
 void fn_mkusr();
 void fn_rmusr();
+void fn_mkfile();
 
 
 Analizador::Analizador(){
@@ -59,6 +61,7 @@ void Analizador::analizarTipo(string comando){
     regex rmgrp("[r|R][m|M][g|G][r|R][p|P]" );
     regex mkusr("[m|M][k|K][u|U][s|S][r|R]" );
     regex rmusr("[r|R][m|M][u|U][s|S][r|R]" );
+    regex mkfile("[m|M][k|K][F|f][I|i][L|l][E|e]" );
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
 
@@ -169,6 +172,17 @@ void Analizador::analizarTipo(string comando){
         cout<<" ---- Termino rmusr ---- "<<endl;
 
     }
+    else if(regex_search(comando,mkfile) == 1){
+        comando = regex_replace(comando,mkfile, "");
+        cout<<" ---- Se dectecto mkfile ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_mkfile();
+        cout<<" ---- Termino mkfile ---- "<<endl;
+
+    }
+
+
 
 
 
@@ -555,6 +569,49 @@ void fn_rmusr(){
     user_cmd->rmusr(usr);
 }
 
+void fn_mkfile(){
+    string path;
+    string size_str = "0";
+    bool r = false;
+    string cont;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "size"){
+            size_str = comando_entrada.valor;
+        }else if(comando_entrada.comando == "r"){
+            r = true;
+        }else if(comando_entrada.comando == "cont"){
+            cont = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    int size;
+    try {
+        size = stoi(size_str);
+        if(size < 0){
+            printErr("Err size debe ser mayor a 0");
+            return;
+        }
+    }catch(...){
+        printErr("EL valor de ugo debe ser un digito");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->mkfile(path,r,size,cont);
+}
 
 
 

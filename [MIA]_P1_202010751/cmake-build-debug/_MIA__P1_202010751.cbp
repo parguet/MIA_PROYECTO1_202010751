@@ -100,6 +100,12 @@
 		<Unit filename="/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/Extras/Extras.h">
 			<Option target="_MIA__P1_202010751"/>
 		</Unit>
+		<Unit filename="/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileManager/FileManager.cpp">
+			<Option target="_MIA__P1_202010751"/>
+		</Unit>
+		<Unit filename="/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileManager/FileManager.h">
+			<Option target="_MIA__P1_202010751"/>
+		</Unit>
 		<Unit filename="/home/parguet/Escritorio/MIA_1S2023/MIA_PROYECTO1_202010751/[MIA]_P1_202010751/FileSystem/FileSystem.cpp">
 			<Option target="_MIA__P1_202010751"/>
 		</Unit>
