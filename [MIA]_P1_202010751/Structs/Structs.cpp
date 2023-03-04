@@ -35,6 +35,11 @@ int bucando_inodo(Structs::Inodes InodoBuscado,vector<string> path_separado,Stru
 creacion_bloque crear_bloque(MountedPartition partition_montada,Structs::Superblock superblock,FILE *disk_file,int tipo);
 int buscar_crear_inodo(vector<string> path_separado , FILE *disk_file,MountedPartition partition_montada, int no_inodo);
 creacion_inodo crear_inodo(MountedPartition partition_montada,Structs::Superblock superblock,FILE *disk_file,int tipo,int permisos);
+void eliminar_todo(Structs::Inodes inodo_ccr, Structs::Superblock superblock , FILE *disk_file,int no_indoo);
+void  eliminar_archivo(Structs::Inodes inodo_ccr, Structs::Superblock superblock , FILE *disk_file,int no_indoo);
+
+
+
 
 //---auxiliares
 string obtener_caracteres(string cadena,int cantidad);
@@ -467,6 +472,202 @@ void Structs::Update_journaling(string operacion, string path, string content,Mo
         fwrite(&journaling, sizeof(Structs::Journaling), 1, disk_file);
     }
 }
+
+
+bool Structs::permisos(int no_inodo, MountedPartition partition_montada, FILE *disk_file,char permiso_necesario) {
+    Structs::Superblock superblock;
+    fseek(disk_file, partition_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+    Structs::Inodes inodo_ccr;
+    fseek(disk_file, superblock.s_inode_start + no_inodo* sizeof (Structs::Inodes), SEEK_SET);
+    fread(&inodo_ccr, sizeof(Structs::Inodes), 1, disk_file);
+
+    string permisos_inodo = convertToString(inodo_ccr.i_perm,3);
+    int permiso_usuario = int(permisos_inodo[0]) - 48;
+    int permiso_grupos = int(permisos_inodo[1]) - 48;
+    int permiso_otros = int(permisos_inodo[2]) - 48;
+
+    if(inodo_ccr.i_uid == usr_sesion.uid){
+        if(permiso_necesario == 'r'){
+            if(permiso_usuario == 7 or permiso_usuario == 6  or permiso_usuario == 5  or permiso_usuario == 4 ){
+                return true;
+            }
+        }
+        if(permiso_necesario == 'w'){
+            if(permiso_usuario == 7 or permiso_usuario == 6  or permiso_usuario == 3  or permiso_usuario == 2 ){
+                return true;
+            }
+        }
+    }
+
+    if(inodo_ccr.i_gid == usr_sesion.gid){
+        if(permiso_necesario == 'r'){
+            if(permiso_grupos == 7 or permiso_grupos == 6  or permiso_grupos == 5  or permiso_grupos == 4 ){
+                return true;
+            }
+        }
+        if(permiso_necesario == 'w'){
+            if(permiso_grupos == 7 or permiso_grupos == 6  or permiso_grupos == 3  or permiso_grupos == 2 ){
+                return true;
+            }
+        }
+    }
+
+    if(permiso_necesario == 'r'){
+        if(permiso_otros == 7 or permiso_otros == 6  or permiso_otros == 5  or permiso_otros == 4 ){
+            return true;
+        }
+    }
+    if(permiso_necesario == 'w'){
+        if(permiso_otros == 7 or permiso_otros == 6  or permiso_otros == 3  or permiso_otros == 2 ){
+            return true;
+        }
+    }
+
+    //si es usuario root
+    if(usr_sesion.uid == 1 and usr_sesion.gid ==1 ){
+        return true;
+    }
+
+    return false;
+}
+
+void Structs::Eliminar_updateinodos(FILE *disk_file, MountedPartition partition_montada, int no_inodo,Structs::Superblock superblock) {
+    Structs::Inodes InodoBuscado;
+    fseek(disk_file, superblock.s_inode_start + no_inodo* sizeof (Structs::Inodes), SEEK_SET);
+    fread(&InodoBuscado, sizeof(Structs::Inodes), 1, disk_file);
+    if(InodoBuscado.i_type == 0){
+        eliminar_todo(InodoBuscado,superblock,disk_file,no_inodo);
+    }else{
+        eliminar_archivo(InodoBuscado,superblock,disk_file,no_inodo);
+    }
+    update_superblock(partition_montada,superblock,disk_file);
+}
+
+void eliminar_todo(Structs::Inodes inodo_ccr, Structs::Superblock superblock , FILE *disk_file,int no_indoo){
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                Structs::Folderblock carpeta;
+                fread(&carpeta, sizeof(Structs::Fileblock), 1, disk_file);
+
+                int contador_carpeta = 0;
+                for(Structs::Content x: carpeta.b_content){
+                    if(x.b_inodo != -1 ){
+                        if(x.b_name[0] != '.'){
+                            Structs::Inodes Inodo_sig;
+                            fseek(disk_file, superblock.s_inode_start +x.b_inodo * sizeof (Structs::Inodes), SEEK_SET);
+                            fread(&Inodo_sig, sizeof(Structs::Inodes), 1, disk_file);
+
+                            if(Inodo_sig.i_type == 0){
+                                eliminar_todo(Inodo_sig,superblock,disk_file,x.b_inodo);
+                            }
+                            else{
+                                //eliminar archivo
+                                eliminar_archivo(Inodo_sig,superblock,disk_file,x.b_inodo);
+                            }
+                        }
+                    }
+                    contador_carpeta++;
+                }
+                //actualizar bloques
+                char zero = '0';
+                fseek(disk_file, superblock.s_bm_block_start + i * sizeof(zero), SEEK_SET);
+                fwrite(&zero, sizeof(zero), 1, disk_file);
+                superblock.s_free_blocks_count++;
+
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+
+    //actualizar inodos
+    char zero = '0';
+    fseek(disk_file, superblock.s_bm_inode_start + no_indoo * sizeof(zero), SEEK_SET);
+    fwrite(&zero, sizeof(zero), 1, disk_file);
+    superblock.s_free_inodes_count++;
+}
+
+void eliminar_archivo(Structs::Inodes inodo_ccr, Structs::Superblock superblock , FILE *disk_file,int no_indoo){
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Fileblock);
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                Structs::Fileblock archivo;
+                fread(&archivo, sizeof(Structs::Fileblock), 1, disk_file);
+
+                //actualizar bloques
+                char zero = '0';
+                fseek(disk_file, superblock.s_bm_block_start + i * sizeof(zero), SEEK_SET);
+                fwrite(&zero, sizeof(zero), 1, disk_file);
+                superblock.s_free_blocks_count++;
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+
+    //actualizar inodos
+    char zero = '0';
+    fseek(disk_file, superblock.s_bm_inode_start + no_indoo * sizeof(zero), SEEK_SET);
+    fwrite(&zero, sizeof(zero), 1, disk_file);
+    superblock.s_free_inodes_count++;
+}
+
+
+int Structs::Eliminar_elemnto(string nombre,FILE *disk_file,MountedPartition partition_montada,int no_inodo) {
+    Structs::Superblock superblock;
+    fseek(disk_file, partition_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+    Structs::Inodes InodoBuscado;
+    fseek(disk_file, superblock.s_inode_start + no_inodo* sizeof (Structs::Inodes), SEEK_SET);
+    fread(&InodoBuscado, sizeof(Structs::Inodes), 1, disk_file);
+
+    int contador = 0;
+    bool actualizado = false;
+    for (int i : InodoBuscado.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                Structs::Folderblock carpeta;
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                fread(&carpeta, sizeof(Structs::Folderblock), 1, disk_file);
+
+                for (int j = 0; j < 4; ++j) {
+                    if(carpeta.b_content[j].b_inodo != -1 and  carpeta.b_content[j].b_name == nombre){
+                        carpeta.b_content[j].b_inodo = -1;
+                        memset(  carpeta.b_content[j].b_name, 0, 12);
+                        actualizado = true;
+                        break;
+                    }
+                }
+
+                if(actualizado){
+                    fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                    fwrite(&carpeta, sizeof(Structs::Folderblock), 1, disk_file);
+                    return 0;
+                }
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+    return -1;
+}
+
 
 
 

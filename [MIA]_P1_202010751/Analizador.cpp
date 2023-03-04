@@ -32,7 +32,8 @@ void fn_rmgrp();
 void fn_mkusr();
 void fn_rmusr();
 void fn_mkfile();
-
+void fn_cat();
+void fn_remove();
 
 Analizador::Analizador(){
 }
@@ -62,6 +63,8 @@ void Analizador::analizarTipo(string comando){
     regex mkusr("[m|M][k|K][u|U][s|S][r|R]" );
     regex rmusr("[r|R][m|M][u|U][s|S][r|R]" );
     regex mkfile("[m|M][k|K][F|f][I|i][L|l][E|e]" );
+    regex cat("[c|C][a|A][t|T]" );
+    regex remove("[r|R][e|E][m|M][o|O][v|V][e|E]" );
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
 
@@ -181,6 +184,25 @@ void Analizador::analizarTipo(string comando){
         cout<<" ---- Termino mkfile ---- "<<endl;
 
     }
+    else if(regex_search(comando,cat) == 1){
+        comando = regex_replace(comando,cat, "");
+        cout<<" ---- Se dectecto cat ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_cat();
+        cout<<" ---- Termino cat ---- "<<endl;
+
+    }
+    else if(regex_search(comando,remove) == 1){
+        comando = regex_replace(comando,remove, "");
+        cout<<" ---- Se dectecto remove ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_remove();
+        cout<<" ---- Termino remove ---- "<<endl;
+    }
+
+
 
 
 
@@ -612,6 +634,51 @@ void fn_mkfile(){
     FileManager *fm_cmd = new FileManager();
     fm_cmd->mkfile(path,r,size,cont);
 }
+
+void fn_cat(){
+    vector<string> files;
+    regex cmd("[f|F][I|i][l|L][e|E]([0-9])*" );
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(regex_search(comando_entrada.comando,cmd) == 1){
+            files.push_back(comando_entrada.valor);
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->cat(files);
+}
+
+void fn_remove(){
+    string path;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->remove(path);
+
+}
+
+
+
 
 
 

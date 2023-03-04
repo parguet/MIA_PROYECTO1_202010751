@@ -107,6 +107,9 @@ class Structs {
     static int Crear_folder_inodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock,string nombrefolder,FILE *disk_file);
     static int Crear_txt_inodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock,string cadena_txt,string nombretxt,FILE *disk_file);
     static void Update_journaling(string operacion,string path,string content,MountedPartition partition_montada, Structs::Superblock superblock,FILE *disk_file);
+    static bool permisos(int no_inodo,MountedPartition partition_montada,FILE *disk_file,char permiso_necesario);
+    static void Eliminar_updateinodos(FILE *disk_file, MountedPartition partition_montada, int no_inodo,Structs::Superblock superblock);
+    static int Eliminar_elemnto(string nombre,FILE *disk_file,MountedPartition partition_montada,int no_inodo);
 
 
 };

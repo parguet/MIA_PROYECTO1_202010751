@@ -131,4 +131,88 @@ void FileManager::mkfile(string path, bool r, int size,string count) {
     fclose(rfile);
 }
 
+void FileManager::cat(vector<string> files) {
+    if(usr_sesion.uid == -1){
+        printErr("Se necesita una sesion iniciada");
+        return;
+    }
 
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    for (int i = 0; i < files.size(); ++i) {
+        string rutatxt = files.at(i);
+        int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+        if(no_inodo == -1){
+            printErr("No se encontro inodo");
+            fclose(rfile);
+            return;
+        }
+
+        if(!Structs::permisos(no_inodo,particion_montada,rfile,'r')){
+            printErr("El usuario actual no tiene permisos para ejecutar este comando");
+            return;
+        }
+
+        string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+        printExitoso(cadena_leida);
+    }
+    printExitoso("Se ejecuto correctamente cat");
+}
+
+void FileManager::remove(string path) {
+    if(usr_sesion.uid == -1 ){
+        printErr("Se necesita una sesion iniciada ");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int no_inodo_inicio = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+    if(no_inodo_inicio == -1){
+        printErr("No se encontro carpeta para remover");
+        fclose(rfile);
+        return;
+    }
+
+    vector<string> div_path = split(path,'/');
+    div_path.erase(div_path.begin());
+    string name_origen = div_path.at(div_path.size()-1);
+    div_path.pop_back();
+    //para buscar el ultimo folder indicado
+    string path_recortado_origen;
+    for (int i = 0; i < div_path.size(); ++i) {
+        path_recortado_origen += '/' +  div_path.at(i);
+    }
+
+    int no_inodo = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+    if(no_inodo == -1){
+        printErr("No se encontro la carpeta/archivo a eliminar ");
+        fclose(rfile);
+        return;
+    }
+
+    Structs::Eliminar_updateinodos(rfile,particion_montada,no_inodo,superblock);
+
+    int padre_origen = Structs::BuscarInodo(path_recortado_origen,particion_montada,superblock,rfile);
+    int retorno_eliminar = Structs::Eliminar_elemnto(name_origen,rfile,particion_montada,padre_origen);
+    if(retorno_eliminar == -1){
+        printErr("No se pudo eliminar el elemento");
+        fclose(rfile);
+        return;
+    }
+
+    Structs::Update_journaling("delete",path,"-",particion_montada,superblock,rfile);
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente remove");
+}

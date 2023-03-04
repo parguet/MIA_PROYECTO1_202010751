@@ -11,6 +11,9 @@ class FileManager {
 public:
     FileManager();
     void mkfile(string path,bool r,int size,string count);
+    void cat(vector<string> files);
+    void remove(string path);
+
 
 };
 
