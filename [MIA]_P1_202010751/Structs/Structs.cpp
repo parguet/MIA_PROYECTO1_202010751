@@ -668,6 +668,58 @@ int Structs::Eliminar_elemnto(string nombre,FILE *disk_file,MountedPartition par
     return -1;
 }
 
+int Structs::Update_namefolder_inodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock,string name_buscado,string name_new, FILE *disk_file) {
+    //leer inode a cambiar permisos
+    Structs::Inodes InodoBuscado;
+    fseek(disk_file, superblock.s_inode_start + indice_inodo * sizeof(Structs::Inodes), SEEK_SET);
+    fread(&InodoBuscado, sizeof(Structs::Inodes), 1, disk_file);
+
+    if(InodoBuscado.i_size == -1){
+        return -1;
+    }
+    //comanzando a iterar el apuntadores de archivo
+    int contador = 0;
+    bool actualizado = false;
+    for (int i : InodoBuscado.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                Structs::Folderblock carpeta;
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                fread(&carpeta, sizeof(Structs::Folderblock), 1, disk_file);
+
+                for (int j = 0; j < 4; ++j) {
+                    if(carpeta.b_content[j].b_inodo != -1 and !actualizado){
+                        if(carpeta.b_content[j].b_name == name_buscado){
+                            memset(  carpeta.b_content[j].b_name, 0, 12);
+                            strcpy(carpeta.b_content[j].b_name,name_new.c_str());
+                            actualizado = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(actualizado){
+                    fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                    fwrite(&carpeta, sizeof(Structs::Fileblock), 1, disk_file);
+                    break;
+                }
+
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+
+    if(actualizado){
+        return 0;
+    }else{
+        return -1;
+    }
+}
+
 
 
 

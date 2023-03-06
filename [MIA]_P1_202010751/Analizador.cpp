@@ -34,6 +34,8 @@ void fn_rmusr();
 void fn_mkfile();
 void fn_cat();
 void fn_remove();
+void fn_edit();
+void fn_rename();
 
 Analizador::Analizador(){
 }
@@ -65,6 +67,10 @@ void Analizador::analizarTipo(string comando){
     regex mkfile("[m|M][k|K][F|f][I|i][L|l][E|e]" );
     regex cat("[c|C][a|A][t|T]" );
     regex remove("[r|R][e|E][m|M][o|O][v|V][e|E]" );
+    regex edit("[e|E][d|D][i|I][t|T]" );
+    regex rename("[r|R][e|E][n|N][a|A][m|M][e|E]" );
+
+
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
 
@@ -200,6 +206,22 @@ void Analizador::analizarTipo(string comando){
         readTokens(comando);
         fn_remove();
         cout<<" ---- Termino remove ---- "<<endl;
+    }
+    else if(regex_search(comando,edit) == 1){
+        comando = regex_replace(comando,edit, "");
+        cout<<" ---- Se dectecto edit ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_edit();
+        cout<<" ---- Termino edit ---- "<<endl;
+    }
+    else if(regex_search(comando,rename) == 1){
+        comando = regex_replace(comando,rename, "");
+        cout<<" ---- Se dectecto rename ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_rename();
+        cout<<" ---- Termino rename ---- "<<endl;
     }
 
 
@@ -677,6 +699,68 @@ void fn_remove(){
 
 }
 
+void fn_edit(){
+    string path;
+    string cont;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "cont"){
+            cont = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    if (cont.empty()){
+        printErr("Falto el parametro obligatorio cont");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->edit(path,cont);
+}
+
+void fn_rename(){
+    string path;
+    string name;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "name"){
+            name = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    if (name.empty()){
+        printErr("Falto el parametro obligatorio name");
+        return;
+    }
+
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->rename(path,name);
+}
 
 
 

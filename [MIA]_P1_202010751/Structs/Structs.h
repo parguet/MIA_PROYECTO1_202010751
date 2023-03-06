@@ -110,6 +110,7 @@ class Structs {
     static bool permisos(int no_inodo,MountedPartition partition_montada,FILE *disk_file,char permiso_necesario);
     static void Eliminar_updateinodos(FILE *disk_file, MountedPartition partition_montada, int no_inodo,Structs::Superblock superblock);
     static int Eliminar_elemnto(string nombre,FILE *disk_file,MountedPartition partition_montada,int no_inodo);
+    static int Update_namefolder_inodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock,string name_buscado,string name_new, FILE *disk_file);
 
 
 };

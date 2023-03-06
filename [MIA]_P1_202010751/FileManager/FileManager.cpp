@@ -216,3 +216,88 @@ void FileManager::remove(string path) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente remove");
 }
+
+void FileManager::edit(string path, string cont) {
+    if(usr_sesion.uid == -1 ){
+        printErr("Se necesita una sesion iniciada ");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+
+    int no_inodo_cont = Structs::BuscarInodo(cont,particion_montada,superblock,rfile);
+    if(no_inodo_cont == -1){
+        printErr("No se encontro archivo de cont");
+        fclose(rfile);
+        return;
+    }
+    string cadena_leida = Structs::LecturaInodo(no_inodo_cont,superblock,rfile);
+
+    int no_inodo = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+    if(no_inodo == -1){
+        printErr("No se encontro el arvivo de path");
+        fclose(rfile);
+        return;
+    }
+
+    int int_retorno = Structs::EscrituraInodo(particion_montada,no_inodo,superblock,cadena_leida,rfile);
+    if(int_retorno == -1){
+        printErr("Hubo un error en la actualizaciond el archivo");
+        fclose(rfile);
+        return;
+    }
+
+    Structs::Update_journaling("edit",path,cont,particion_montada,superblock,rfile);
+    fclose(rfile);
+    printExitoso("SE ejecuto correctamente edit");
+}
+
+void FileManager::rename(string path, string name) {
+    if(usr_sesion.uid == -1){
+        printErr("Se necesita una sesion iniciada");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    vector<string> div_path = split(path,'/');
+    div_path.erase(div_path.begin());
+    string name_buscado = div_path.at(div_path.size()-1);
+    string rutatxt = "";
+    div_path.pop_back();
+    for (int i = 0; i < div_path.size() ; ++i) {
+        rutatxt += '/' + div_path.at(i);
+    }
+    //regex pause("[.][t|T][x|X][T|t]" );
+    // if (regex_search(entrada,recorrer) == 1)
+    int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro inodo");
+        fclose(rfile);
+        return;
+    }
+
+    int retorno = Structs::Update_namefolder_inodo(particion_montada,no_inodo,superblock,name_buscado,name,rfile);
+
+    if(retorno == -1){
+        printErr("No se pudo actualizar el nombre del archivo");
+        fclose(rfile);
+        return;
+    }
+
+    Structs::Update_journaling("rename",path,name,particion_montada,superblock,rfile);
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente rename");
+}

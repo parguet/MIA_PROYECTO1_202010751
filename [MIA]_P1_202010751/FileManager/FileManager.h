@@ -13,7 +13,8 @@ public:
     void mkfile(string path,bool r,int size,string count);
     void cat(vector<string> files);
     void remove(string path);
-
+    void edit(string path,string cont);
+    void rename(string path,string name);
 
 };
 
