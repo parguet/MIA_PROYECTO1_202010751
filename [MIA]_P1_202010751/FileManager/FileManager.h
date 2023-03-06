@@ -15,6 +15,7 @@ public:
     void remove(string path);
     void edit(string path,string cont);
     void rename(string path,string name);
+    void mkdir(string path,bool p);
 
 };
 

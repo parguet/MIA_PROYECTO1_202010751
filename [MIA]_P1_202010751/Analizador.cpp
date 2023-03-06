@@ -36,6 +36,8 @@ void fn_cat();
 void fn_remove();
 void fn_edit();
 void fn_rename();
+void fn_mkdir();
+
 
 Analizador::Analizador(){
 }
@@ -69,6 +71,7 @@ void Analizador::analizarTipo(string comando){
     regex remove("[r|R][e|E][m|M][o|O][v|V][e|E]" );
     regex edit("[e|E][d|D][i|I][t|T]" );
     regex rename("[r|R][e|E][n|N][a|A][m|M][e|E]" );
+    regex mkdir("[m|M][k|K][d|D][I|i][r|R]" );
 
 
 
@@ -223,6 +226,15 @@ void Analizador::analizarTipo(string comando){
         fn_rename();
         cout<<" ---- Termino rename ---- "<<endl;
     }
+    else if(regex_search(comando,mkdir) == 1){
+        comando = regex_replace(comando,mkdir, "");
+        cout<<" ---- Se dectecto mkdir ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_mkdir();
+        cout<<" ---- Termino mkdir ---- "<<endl;
+    }
+
 
 
 
@@ -761,6 +773,33 @@ void fn_rename(){
     FileManager *fm_cmd = new FileManager();
     fm_cmd->rename(path,name);
 }
+
+void fn_mkdir(){
+    string path;
+    bool p = false;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "r"){
+            p = true;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->mkdir(path,p);
+}
+
 
 
 

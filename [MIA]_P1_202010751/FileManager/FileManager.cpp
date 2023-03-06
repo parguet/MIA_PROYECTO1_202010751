@@ -301,3 +301,53 @@ void FileManager::rename(string path, string name) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente rename");
 }
+
+void FileManager::mkdir(string path, bool p) {
+    if(usr_sesion.uid == -1){
+        printErr("Se necesita una sesion iniciada");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+    if(!p){
+        vector<string> div_path = split(path,'/');
+        div_path.erase(div_path.begin());
+        string namefolder = div_path.at(div_path.size()-1);
+        div_path.pop_back();
+        //se supone que si p = false solo se debe cear la ultima carpeta
+        string path_recortado;
+        for (int i = 0; i < div_path.size(); ++i) {
+            path_recortado += "/" + div_path.at(i);
+        }
+
+        int no_inodo = Structs::BuscarInodo(path_recortado,particion_montada,superblock,rfile);
+        if(no_inodo == -1){
+            printErr("Hubo un error en la creacion de la carpeta, path no encontrado");
+            fclose(rfile);
+            return;
+        }
+
+        int retorno = Structs::Crear_folder_inodo(particion_montada,no_inodo,superblock,namefolder,rfile);
+        if(no_inodo == -1){
+            printErr("Hubo un error en la creacion de la carpeta");
+            fclose(rfile);
+            return;
+        }
+        Structs::Update_journaling("mkdir",path,"-",particion_montada,superblock,rfile);
+    }else{
+        int no_inodo = Structs::Buscar_CreandoInodo(path,particion_montada,superblock,rfile);
+        if(no_inodo == -1){
+            printErr("Hubo un error en la creacion de la carpeta, error de path");
+            fclose(rfile);
+            return;
+        }
+        Structs::Update_journaling("mkdir -p",path,"-",particion_montada,superblock,rfile);
+    }
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente mkdir");
+}
