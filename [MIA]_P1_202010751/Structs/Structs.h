@@ -111,6 +111,8 @@ class Structs {
     static void Eliminar_updateinodos(FILE *disk_file, MountedPartition partition_montada, int no_inodo,Structs::Superblock superblock);
     static int Eliminar_elemnto(string nombre,FILE *disk_file,MountedPartition partition_montada,int no_inodo);
     static int Update_namefolder_inodo(MountedPartition partition_montada, int indice_inodo, Structs::Superblock superblock,string name_buscado,string name_new, FILE *disk_file);
+    static int Copiar_elemento(FILE *disk_file,MountedPartition partition_montada,int no_inodo,Structs::Superblock superblock,int padre,string nombre);
+    static int Agregar_elemnto(string nombre,int inodo_agregar,FILE *disk_file,MountedPartition partition_montada,int no_inodo);
 
 
 };

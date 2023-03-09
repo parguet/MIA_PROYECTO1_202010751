@@ -37,6 +37,8 @@ int buscar_crear_inodo(vector<string> path_separado , FILE *disk_file,MountedPar
 creacion_inodo crear_inodo(MountedPartition partition_montada,Structs::Superblock superblock,FILE *disk_file,int tipo,int permisos);
 void eliminar_todo(Structs::Inodes inodo_ccr, Structs::Superblock superblock , FILE *disk_file,int no_indoo);
 void  eliminar_archivo(Structs::Inodes inodo_ccr, Structs::Superblock superblock , FILE *disk_file,int no_indoo);
+void copiar_todo(Structs::Inodes inodo_ccr, creacion_inodo nuevo_inodo, Structs::Superblock superblock , FILE *disk_file,MountedPartition mounted_partitions,int padre );
+void copiar_archivo(Structs::Inodes inodo_ccr, creacion_inodo nuevo_inodo, Structs::Superblock superblock , FILE *disk_file,MountedPartition mounted_partitions );
 
 
 
@@ -720,6 +722,189 @@ int Structs::Update_namefolder_inodo(MountedPartition partition_montada, int ind
     }
 }
 
+int Structs::Copiar_elemento(FILE *disk_file, MountedPartition partition_montada, int no_inodo,Structs::Superblock superblock,int padre,string nombre) {
+    Structs::Inodes InodoBuscado;
+    fseek(disk_file, superblock.s_inode_start + no_inodo* sizeof (Structs::Inodes), SEEK_SET);
+    fread(&InodoBuscado, sizeof(Structs::Inodes), 1, disk_file);
+
+    creacion_inodo nuevo_inodo = crear_inodo(partition_montada,superblock,disk_file,InodoBuscado.i_type,664);
+    superblock.s_free_inodes_count--;
+    int retorno = nuevo_inodo.no_inodo;
+
+    if(InodoBuscado.i_type == 0){
+        //por si pide copiar una carpeta y su contenido
+        copiar_todo(InodoBuscado,nuevo_inodo,superblock,disk_file,partition_montada,padre);
+    }else{
+        //por si pide copiar un txt
+        copiar_archivo(InodoBuscado,nuevo_inodo,superblock,disk_file,partition_montada);
+    }
+
+    update_superblock(partition_montada,superblock,disk_file);
+
+    return Structs::Agregar_elemnto(nombre,retorno,disk_file,partition_montada,padre);
+}
+
+
+void copiar_todo(Structs::Inodes inodo_ccr, creacion_inodo nuevo_inodo, Structs::Superblock superblock , FILE *disk_file,MountedPartition mounted_partitions,int padre ){
+    nuevo_inodo.inodo.i_size = inodo_ccr.i_size;
+
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                Structs::Folderblock carpeta;
+                fread(&carpeta, sizeof(Structs::Fileblock), 1, disk_file);
+
+                //crear nueva carpeta
+                creacion_bloque bloque_new = crear_bloque(mounted_partitions,superblock,disk_file,0);
+                superblock.s_free_blocks_count--;
+
+                //agreagr el nuevo bloque al nuevo inodo
+                nuevo_inodo.inodo.i_block[contador] = bloque_new.no_bloque;
+
+                //escribir el folder creado
+                strcpy(bloque_new.carpeta.b_content[0].b_name, ".");
+                bloque_new.carpeta.b_content[0].b_inodo = nuevo_inodo.no_inodo;
+                strcpy(bloque_new.carpeta.b_content[1].b_name, "..");
+                bloque_new.carpeta.b_content[1].b_inodo = padre;
+
+                int contador_carpeta = 0;
+                for(Structs::Content x: carpeta.b_content){
+                    if(x.b_inodo != -1 ){
+                        if(x.b_name[0] != '.'){
+                            strncpy(bloque_new.carpeta.b_content[contador_carpeta].b_name, x.b_name, 12);
+
+                            Structs::Inodes Inodo_sig;
+                            fseek(disk_file, superblock.s_inode_start +x.b_inodo * sizeof (Structs::Inodes), SEEK_SET);
+                            fread(&Inodo_sig, sizeof(Structs::Inodes), 1, disk_file);
+
+                            if(Inodo_sig.i_type == 0){
+                                creacion_inodo nuevo_inodo_sig = crear_inodo(mounted_partitions,superblock,disk_file,0,664);
+                                superblock.s_free_inodes_count--;
+                                copiar_todo(Inodo_sig,nuevo_inodo_sig,superblock,disk_file,mounted_partitions,nuevo_inodo.no_inodo);
+
+                                //poner el al inodo que apuntara
+                                bloque_new.carpeta.b_content[contador_carpeta].b_inodo = nuevo_inodo_sig.no_inodo;
+                            }
+                            else{
+                                //copiar archivo
+                                creacion_inodo nuevo_inodo_sig = crear_inodo(mounted_partitions,superblock,disk_file,1,664);
+                                superblock.s_free_inodes_count--;
+                                copiar_archivo(Inodo_sig,nuevo_inodo_sig,superblock,disk_file,mounted_partitions);
+
+                                //poner el al inodo que apuntara
+                                bloque_new.carpeta.b_content[contador_carpeta].b_inodo = nuevo_inodo_sig.no_inodo;
+                            }
+                        }
+                    }
+                    contador_carpeta++;
+                }
+
+                //actualizar bloque carpeta creada
+                fseek(disk_file, superblock.s_block_start + bloque_new.no_bloque * sizeof(Structs::Folderblock), SEEK_SET);
+                fwrite(&bloque_new.carpeta, sizeof(Structs::Folderblock), 1, disk_file);
+
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+
+    fseek(disk_file, superblock.s_inode_start + nuevo_inodo.no_inodo * sizeof(Structs::Inodes), SEEK_SET);
+    fwrite(&nuevo_inodo.inodo, sizeof(Structs::Inodes), 1, disk_file);
+}
+
+
+void copiar_archivo(Structs::Inodes inodo_ccr, creacion_inodo nuevo_inodo, Structs::Superblock superblock , FILE *disk_file,MountedPartition mounted_partitions ){
+    nuevo_inodo.inodo.i_size = inodo_ccr.i_size;
+
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                Structs::Fileblock archivo;
+                fread(&archivo, sizeof(Structs::Fileblock), 1, disk_file);
+
+                //crear nueva carpeta
+                creacion_bloque bloque_new = crear_bloque(mounted_partitions,superblock,disk_file,1);
+                superblock.s_free_blocks_count--;
+
+                strncpy(bloque_new.archivo.b_content, archivo.b_content, 64);
+
+                //actualizar bloque archivo creada
+                fseek(disk_file, superblock.s_block_start + bloque_new.no_bloque * sizeof(Structs::Fileblock), SEEK_SET);
+                fwrite(&bloque_new.archivo, sizeof(Structs::Fileblock), 1, disk_file);
+
+                //actulizar i_block
+                nuevo_inodo.inodo.i_block[contador] = bloque_new.no_bloque;
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+
+    fseek(disk_file, superblock.s_inode_start + nuevo_inodo.no_inodo * sizeof(Structs::Inodes), SEEK_SET);
+    fwrite(&nuevo_inodo.inodo, sizeof(Structs::Inodes), 1, disk_file);
+}
+
+
+int Structs::Agregar_elemnto(string nombre,int inodo_agregar, FILE *disk_file, MountedPartition partition_montada, int no_inodo) {
+    Structs::Superblock superblock;
+    fseek(disk_file, partition_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+    Structs::Inodes InodoBuscado;
+    fseek(disk_file, superblock.s_inode_start + no_inodo* sizeof (Structs::Inodes), SEEK_SET);
+    fread(&InodoBuscado, sizeof(Structs::Inodes), 1, disk_file);
+
+    int contador = 0;
+    bool actualizado = false;
+    for (int i : InodoBuscado.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                Structs::Folderblock carpeta;
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                fread(&carpeta, sizeof(Structs::Folderblock), 1, disk_file);
+
+                for (int j = 0; j < 4; ++j) {
+                    if(carpeta.b_content[j].b_inodo == -1){
+                        carpeta.b_content[j].b_inodo = inodo_agregar;
+                        memset(  carpeta.b_content[j].b_name, 0, 12);
+                        strcpy(carpeta.b_content[j].b_name,nombre.c_str());
+                        actualizado = true;
+                        break;
+                    }
+                }
+
+                if(actualizado){
+                    fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                    fwrite(&carpeta, sizeof(Structs::Folderblock), 1, disk_file);
+                    return 0;
+                }
+            }else{
+                //blooques indirectos
+            }
+        }else{
+            if(contador<12){
+                //apuntadores directos
+                superblock = crear_apuntador_directo(superblock,disk_file, partition_montada,InodoBuscado,contador,no_inodo);
+                return Structs::Agregar_elemnto(nombre,inodo_agregar,disk_file,partition_montada,no_inodo);
+            }
+        }
+        contador++;
+    }
+    return -1;
+}
 
 
 

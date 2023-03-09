@@ -351,3 +351,46 @@ void FileManager::mkdir(string path, bool p) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente mkdir");
 }
+
+void FileManager::copy(string path,string destino) {
+    if(usr_sesion.uid == -1 ){
+        printErr("Se necesita una sesion iniciada ");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int no_inodo_inicio = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+    if(no_inodo_inicio == -1){
+        printErr("No se encontro carpeta para mover");
+        fclose(rfile);
+        return;
+    }
+
+    int no_inodo_destino = Structs::BuscarInodo(destino,particion_montada,superblock,rfile);
+    if(no_inodo_destino == -1){
+        printErr("No se encontro carpeta de destino");
+        fclose(rfile);
+        return;
+    }
+
+    vector<string> div_path = split(path,'/');
+    string name_origen = div_path.at(div_path.size()-1);
+    //para buscar el ultimo folder indicado
+
+
+    int retorno_copiar = Structs::Copiar_elemento(rfile,particion_montada,no_inodo_inicio,superblock,no_inodo_destino,name_origen);
+    if(retorno_copiar == -1){
+        printErr("Algo sucedio en la copia de archivos");
+        return;
+    }
+
+    Structs::Update_journaling("copy",path,destino,particion_montada,superblock,rfile);
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente copy");
+}
