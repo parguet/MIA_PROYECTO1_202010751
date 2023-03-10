@@ -38,6 +38,8 @@ void fn_edit();
 void fn_rename();
 void fn_mkdir();
 void fn_copy();
+void fn_move();
+
 
 
 
@@ -75,6 +77,7 @@ void Analizador::analizarTipo(string comando){
     regex rename("[r|R][e|E][n|N][a|A][m|M][e|E]" );
     regex mkdir("[m|M][k|K][d|D][I|i][r|R]" );
     regex copy("[c|C][o|O][p|P][y|Y]" );
+    regex move("[m|M][o|O][v|V][e|E]" );
 
 
 
@@ -245,6 +248,15 @@ void Analizador::analizarTipo(string comando){
         fn_copy();
         cout<<" ---- Termino copy ---- "<<endl;
     }
+    else if(regex_search(comando,move) == 1){
+        comando = regex_replace(comando,move, "");
+        cout<<" ---- Se dectecto move ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_move();
+        cout<<" ---- Termino move ---- "<<endl;
+    }
+
 
 
 
@@ -840,6 +852,40 @@ void fn_copy(){
     FileManager *fm_cmd = new FileManager();
     fm_cmd->copy(path,destino);
 }
+
+void fn_move(){
+    string path;
+    string destino;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "destino"){
+            destino = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    if (destino.empty()){
+        printErr("Falto el parametro obligatorio destino");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->move(path,destino);
+}
+
+
+
 
 
 

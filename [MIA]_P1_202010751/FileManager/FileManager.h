@@ -17,6 +17,7 @@ public:
     void rename(string path,string name);
     void mkdir(string path,bool p);
     void copy(string path,string destino);
+    void move(string path,string destino);
 
 };
 

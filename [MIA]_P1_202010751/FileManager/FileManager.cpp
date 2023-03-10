@@ -394,3 +394,61 @@ void FileManager::copy(string path,string destino) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente copy");
 }
+
+void FileManager::move(string path, string destino) {
+    if(usr_sesion.uid == -1 ){
+        printErr("Se necesita una sesion iniciada ");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int no_inodo_inicio = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+    if(no_inodo_inicio == -1){
+        printErr("No se encontro carpeta para mover");
+        fclose(rfile);
+        return;
+    }
+
+    int no_inodo_destino = Structs::BuscarInodo(destino,particion_montada,superblock,rfile);
+    if(no_inodo_destino == -1){
+        printErr("No se encontro carpeta de destino");
+        fclose(rfile);
+        return;
+    }
+
+    vector<string> div_path = split(path,'/');
+    div_path.erase(div_path.begin());
+    string name_origen = div_path.at(div_path.size()-1);
+    div_path.pop_back();
+    //para buscar el ultimo folder indicado
+    string path_recortado_origen;
+    for (int i = 0; i < div_path.size(); ++i) {
+        path_recortado_origen += '/' +  div_path.at(i);
+    }
+
+    int padre_origen = Structs::BuscarInodo(path_recortado_origen,particion_montada,superblock,rfile);
+    int retorno_eliminar = Structs::Eliminar_elemnto(name_origen,rfile,particion_montada,padre_origen);
+    if(retorno_eliminar == -1){
+        printErr("No se pudo eliminar el elemento");
+        fclose(rfile);
+        return;
+    }
+
+    int retorno_agregar = Structs::Agregar_elemnto(name_origen,no_inodo_inicio,rfile,particion_montada,no_inodo_destino);
+    if(retorno_agregar == -1){
+        printErr("No se pudo agregar el elemento");
+        fclose(rfile);
+        return;
+    }
+
+
+    Structs::Update_journaling("move",path,destino,particion_montada,superblock,rfile);
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente move");
+}
