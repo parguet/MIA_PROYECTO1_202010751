@@ -907,6 +907,60 @@ int Structs::Agregar_elemnto(string nombre,int inodo_agregar, FILE *disk_file, M
 }
 
 
+void Structs::recorrer_find(Structs::Inodes inodo_ccr,Structs::Superblock superblock , FILE *disk_file,int profundidad,int tipo) {
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                Structs::Folderblock carpeta;
+                fread(&carpeta, sizeof(Structs::Fileblock), 1, disk_file);
+
+                for(Structs::Content x: carpeta.b_content){
+                    if(x.b_inodo != -1 ){
+                        if(x.b_name[0] != '.'){
+                            string  espcio;
+                            for (int j = 0; j < profundidad ; ++j) {
+                                espcio += " ";
+                            }
+                            espcio += "|_";
+
+                            regex txt("[.][t|T][x|X][T|t]" );
+                            string name_temp = convertToString(x.b_name,12);
+
+                            if (regex_search(name_temp,txt) == 1){
+                                if(tipo == 1){
+                                    if(x.b_name[1] == '.')
+                                        print(espcio + x.b_name);
+
+                                }else{
+                                    print(espcio + x.b_name);
+                                }
+                            }else{
+                                print(espcio + x.b_name);
+                            }
+
+                            Structs::Inodes Inodo_sig;
+                            fseek(disk_file, superblock.s_inode_start +x.b_inodo * sizeof (Structs::Inodes), SEEK_SET);
+                            fread(&Inodo_sig, sizeof(Structs::Inodes), 1, disk_file);
+                            if(Inodo_sig.i_type == 0){
+                                Structs::recorrer_find(Inodo_sig,superblock,disk_file,profundidad+1,tipo);
+                            }
+                        }
+                    }
+                }
+            }else{
+                //blooques indirectos
+            }
+            contador++;
+        }
+    }
+}
+
+
+
 
 //-------------------------Auxiliares---------------------------------------
 string quitar_caracteres(string cadena,int cantidad){

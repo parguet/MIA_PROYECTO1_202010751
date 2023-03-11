@@ -452,3 +452,36 @@ void FileManager::move(string path, string destino) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente move");
 }
+
+void FileManager::find(string path, int tipo) {
+    if(usr_sesion.uid == -1 ){
+        printErr("Se necesita una sesion iniciada ");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int no_inodo_inicio = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+    if(no_inodo_inicio == -1){
+        printErr("No se encontro carpeta para buscar");
+        fclose(rfile);
+        return;
+    }
+    Structs::Inodes inodo_ccr;
+    fseek(rfile, superblock.s_inode_start + no_inodo_inicio * sizeof (Structs::Inodes), SEEK_SET);
+    fread(&inodo_ccr, sizeof(Structs::Inodes), 1, rfile);
+
+    vector<string> div_path = split(path,'/');
+    string name_origen = div_path.at(div_path.size()-1);
+
+    print(name_origen + "/");
+    Structs::recorrer_find(inodo_ccr,superblock,rfile,0,tipo);
+
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente find");
+}
