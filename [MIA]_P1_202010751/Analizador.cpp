@@ -40,6 +40,7 @@ void fn_mkdir();
 void fn_copy();
 void fn_move();
 void fn_find();
+void fn_chown();
 
 
 
@@ -80,7 +81,7 @@ void Analizador::analizarTipo(string comando){
     regex copy("[c|C][o|O][p|P][y|Y]" );
     regex move("[m|M][o|O][v|V][e|E]" );
     regex find("[f|F][i|I][n|N][d|D]" );
-
+    regex chown("[c|C][h|H][o|O][w|W][n|N]" );
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -266,7 +267,14 @@ void Analizador::analizarTipo(string comando){
         fn_find();
         cout<<" ---- Termino find ---- "<<endl;
     }
-
+    else if(regex_search(comando,chown) == 1){
+        comando = regex_replace(comando,chown, "");
+        cout<<" ---- Se dectecto chown ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_chown();
+        cout<<" ---- Termino chown ---- "<<endl;
+    }
 
 
 
@@ -933,7 +941,39 @@ void fn_find(){
     fm_cmd->find(path,tipo);
 }
 
+void fn_chown(){
+    string path;
+    string usr;
+    bool r = false;
 
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "user"){
+            usr = comando_entrada.valor;
+        }else if(comando_entrada.comando == "r"){
+            r = true;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    if (usr.empty()){
+        printErr("Falto el parametro obligatorio user");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->chown(path,usr,r);
+}
 
 
 

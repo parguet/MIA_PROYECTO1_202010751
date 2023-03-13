@@ -114,6 +114,8 @@ class Structs {
     static int Copiar_elemento(FILE *disk_file,MountedPartition partition_montada,int no_inodo,Structs::Superblock superblock,int padre,string nombre);
     static int Agregar_elemnto(string nombre,int inodo_agregar,FILE *disk_file,MountedPartition partition_montada,int no_inodo);
     static void recorrer_find(Structs::Inodes inodo_ccr,Structs::Superblock superblock , FILE *disk_file,int profundidad,int tipo);
+    static int Update_own_inodo(int indice_inodo, Structs::Superblock superblock,int usr,int grp,FILE *disk_file);
+    static int cambiar_propietario(Structs::Superblock superblock , FILE *disk_file,int no_inodo,int usr, int grp);
 
 
 };

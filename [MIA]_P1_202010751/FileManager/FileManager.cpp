@@ -485,3 +485,100 @@ void FileManager::find(string path, int tipo) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente find");
 }
+
+void FileManager::chown(string path, string usr, bool r) {
+    if(usr_sesion.uid == -1 ){
+        printErr("Se necesita una sesion iniciada ");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int usr_id =-1;
+    string grp_name;
+    int grp_id;
+
+    string rutatxt = "/user.txt";
+    int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro archivo");
+        fclose(rfile);
+        return;
+    }
+
+    string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+    printExitoso(cadena_leida);
+    if(cadena_leida.empty()){
+        printErr("No se pudo leer archivo");
+        fclose(rfile);
+        return;
+    }
+    vector<string> div_lineas = split(cadena_leida,'\n');
+    for (string line:div_lineas) {
+        if (line.empty())
+            break;
+        if (line[2] == 'U' || line[2] == 'u') {
+            vector<string> in = split(line, ',');
+            if (in[3] == usr) {
+                usr_id = stoi(in[0]);
+                grp_name = in[2];
+                break;
+            }
+        }
+    }
+    if(usr_id == -1){
+        printErr("No existe el usuario que sera el nuevo propieetario");
+        fclose(rfile);
+        return;
+    }
+
+    for (string line:div_lineas) {
+        if (line.empty())
+            break;
+        if (line[2] == 'g' || line[2] == 'G') {
+            vector<string> in = split(line, ',');
+            if (in[2] == grp_name) {
+                grp_id = stoi(in[0]);
+                break;
+            }
+        }
+    }
+
+    no_inodo = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro archivo");
+        fclose(rfile);
+        return;
+    }
+
+    if(!r){
+        int retorno = Structs::Update_own_inodo(no_inodo,superblock,usr_id,grp_id,rfile);
+
+        if(retorno == -1){
+            printErr("Err al cambiar propietario");
+            fclose(rfile);
+            return;
+        }
+        Structs::Update_journaling("chown",path,usr,particion_montada,superblock,rfile);
+    }else{
+        int retorno = Structs::cambiar_propietario(superblock,rfile,no_inodo,usr_id,grp_id);
+
+        if(retorno == -1){
+            printErr("Err al cambiar propietario");
+            fclose(rfile);
+            return;
+        }
+        Structs::Update_journaling("chown -r",path,usr,particion_montada,superblock,rfile);
+    }
+
+
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente chown");
+}
