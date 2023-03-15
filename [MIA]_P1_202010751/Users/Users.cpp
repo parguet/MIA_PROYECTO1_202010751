@@ -364,3 +364,76 @@ void Users::rmusr(string name) {
     fclose(rfile);
     printExitoso("SE ejecuto correctamente rmusr");
 }
+
+
+void Users::chgrp(string user, string grp) {
+    if(usr_sesion.uid == -1 or usr_sesion.usr != "root"){
+        printErr("Se necesita una sesion iniciada y se necesita ser el usuario root");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    string rutatxt = "/user.txt";
+    int no_inodo = Structs::BuscarInodo(rutatxt,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro el inodo");
+        fclose(rfile);
+        return;
+    }
+
+    string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+
+    if(cadena_leida.empty()){
+        printErr("No se pudo leer archivo user.txt");
+        fclose(rfile);
+        return;
+    }
+
+    vector<string> div_lineas = split(cadena_leida,'\n');
+    string cadena_leida_act;
+    int contador = 1;
+    bool exite_grp = false;
+    for (string line:div_lineas) {
+        if(line.empty())
+            continue;
+        if (line[2] == 'u' || line[2] == 'U') {
+            vector<string> in = split(line, ',');
+            if(in[3] == user){
+                cadena_leida_act += in[0] + ",U," + grp + "," + in[3] + "," + in[4] +  "\n";
+            }else{
+                cadena_leida_act += line + "\n";
+            }
+            contador++;
+        }else{
+            cadena_leida_act += line + "\n";
+            if(!exite_grp){
+                if (line[2] == 'g' || line[2] == 'G') {
+                    vector<string> in = split(line, ',');
+                    if(in[2] == grp){
+                        exite_grp = true;
+                    }
+                }
+            }
+        }
+    }
+    if(!exite_grp){
+        printErr("No se pudo actualizar usurio, grupo inexistente");
+        fclose(rfile);
+        return;
+    }
+    int int_retorno = Structs::EscrituraInodo(particion_montada,no_inodo,superblock,cadena_leida_act,rfile);
+    if(int_retorno == -1){
+        printErr("Hubo un error en la actualizaciond el archivo");
+        fclose(rfile);
+        return;
+    }
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente chgrp");
+}

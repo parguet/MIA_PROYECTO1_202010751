@@ -41,6 +41,7 @@ void fn_copy();
 void fn_move();
 void fn_find();
 void fn_chown();
+void fn_chgrp();
 
 
 
@@ -82,6 +83,7 @@ void Analizador::analizarTipo(string comando){
     regex move("[m|M][o|O][v|V][e|E]" );
     regex find("[f|F][i|I][n|N][d|D]" );
     regex chown("[c|C][h|H][o|O][w|W][n|N]" );
+    regex chgrp("[c|C][h|H][G|g][r|R][p|P]" );
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -275,6 +277,15 @@ void Analizador::analizarTipo(string comando){
         fn_chown();
         cout<<" ---- Termino chown ---- "<<endl;
     }
+    else if(regex_search(comando,chgrp) == 1){
+        comando = regex_replace(comando,chgrp, "");
+        cout<<" ---- Se dectecto chgrp ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_chgrp();
+        cout<<" ---- Termino chgrp ---- "<<endl;
+    }
+
 
 
 
@@ -975,7 +986,37 @@ void fn_chown(){
     fm_cmd->chown(path,usr,r);
 }
 
+void fn_chgrp(){
+    string usr;
+    string grp;
 
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "user"){
+            usr = comando_entrada.valor;
+        }else if(comando_entrada.comando == "grp"){
+            grp = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (usr.empty()){
+        printErr("Falto el parametro obligatorio usr");
+        return;
+    }
+
+    if (grp.empty()){
+        printErr("Falto el parametro obligatorio grp");
+        return;
+    }
+
+
+    Users *user_cmd = new Users();
+    user_cmd->chgrp(usr,grp);
+}
 
 
 
