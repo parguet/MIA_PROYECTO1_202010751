@@ -86,6 +86,7 @@ void Analizador::analizarTipo(string comando){
     regex chown("[c|C][h|H][o|O][w|W][n|N]" );
     regex chgrp("[c|C][h|H][G|g][r|R][p|P]" );
     regex chmod("[c|C][h|H][m|M][o|O][d|D]" );
+    regex pause("[p|P][a|A][u|U][s|S][e|E]" );
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -296,6 +297,20 @@ void Analizador::analizarTipo(string comando){
         cout<<" ---- Termino chmod ---- "<<endl;
 
     }
+    else if(regex_search(comando,pause) == 1){
+        cout<<" ---- Se dectecto pause ---- "<<endl;
+        for (int i = 0; i < 100 ; ++i) {
+            char c = '~';
+            c = getchar();
+            if(c != '~')
+                break;
+        }
+        cout<<"Presione una tecla para continuar..."<<endl;
+        getchar();
+        cout<<" ---- Termino pause ---- "<<endl;
+    }
+
+
 
 
 
