@@ -582,3 +582,47 @@ void FileManager::chown(string path, string usr, bool r) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente chown");
 }
+
+void FileManager::chmod(string path, int ugo, bool r) {
+    if(usr_sesion.uid == -1 or usr_sesion.usr != "root"){
+        printErr("Se necesita una sesion iniciada y se necesita ser el usuario root");
+        return;
+    }
+
+    int i_particion_montada = Buscar_Pmontada_id(usr_sesion.pid);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb+");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int no_inodo = Structs::BuscarInodo(path,particion_montada,superblock,rfile);
+
+    if(no_inodo == -1){
+        printErr("No se encontro el inodo");
+        fclose(rfile);
+        return;
+    }
+
+    if(!r){
+        int retorno = Structs::Update_perm_inodo(no_inodo,superblock,ugo,rfile);
+
+        if(retorno == -1){
+            fclose(rfile);
+            printErr("Err al cambiar permisos");
+            return;
+        }
+        Structs::Update_journaling("chmod",path, to_string(ugo),particion_montada,superblock,rfile);
+    }else{
+        int retorno = Structs::cambiar_permisos(superblock,rfile,no_inodo,ugo);
+        if(retorno == -1){
+            fclose(rfile);
+            printErr("Err al cambiar permisos");
+            return;
+        }
+        Structs::Update_journaling("chmod -r",path, to_string(ugo),particion_montada,superblock,rfile);
+    }
+
+    fclose(rfile);
+    printExitoso("Se ejecuto correctamente chmod");
+}

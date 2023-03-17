@@ -1149,3 +1149,73 @@ int Structs::cambiar_propietario(Structs::Superblock superblock , FILE *disk_fil
     }
     return 0;
 }
+
+int Structs::Update_perm_inodo( int indice_inodo, Structs::Superblock superblock,int permisos,FILE *disk_file) {
+    //leer inode a cambiar permisos
+    Structs::Inodes InodoBuscado;
+    fseek(disk_file, superblock.s_inode_start + indice_inodo * sizeof(Structs::Inodes), SEEK_SET);
+    fread(&InodoBuscado, sizeof(Structs::Inodes), 1, disk_file);
+
+    if(InodoBuscado.i_size == -1){
+        return -1;
+    }
+    string permisos_inodo = to_string(permisos);
+    InodoBuscado.i_perm[0] = permisos_inodo[0];
+    InodoBuscado.i_perm[1] = permisos_inodo[1];
+    InodoBuscado.i_perm[2] = permisos_inodo[2];
+
+    update_inodo_ccr(superblock,disk_file,InodoBuscado,indice_inodo);
+    return 0;
+}
+
+int Structs::cambiar_permisos(Structs::Superblock superblock , FILE *disk_file,int no_inodo,int permisos){
+    Structs::Inodes inodo_ccr;
+    fseek(disk_file, superblock.s_inode_start + no_inodo * sizeof(Structs::Inodes), SEEK_SET);
+    fread(&inodo_ccr, sizeof(Structs::Inodes), 1, disk_file);
+
+    int retorno = Structs::Update_perm_inodo(no_inodo,superblock,permisos,disk_file);
+    if(retorno == -1){
+        printErr("Ocurrio un error al actaulizar permisos recursivamente");
+        return -1;
+    }
+
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                Structs::Folderblock carpeta;
+                fread(&carpeta, sizeof(Structs::Fileblock), 1, disk_file);
+
+                for(Structs::Content x: carpeta.b_content){
+                    if(x.b_inodo != -1 ){
+                        if(x.b_name[0] != '.'){
+                            Structs::Inodes Inodo_sig;
+                            fseek(disk_file, superblock.s_inode_start +x.b_inodo * sizeof (Structs::Inodes), SEEK_SET);
+                            fread(&Inodo_sig, sizeof(Structs::Inodes), 1, disk_file);
+                            if(Inodo_sig.i_type == 0){
+                                int retorno_axu = Structs::cambiar_permisos(superblock,disk_file,x.b_inodo,permisos);
+                                if(retorno_axu == -1){
+                                    printErr("Ocurrio un error al actaulizar permisos recursivamente");
+                                    return -1;
+                                }
+                            }else{
+                                int retorno_axu = Structs::Update_perm_inodo(x.b_inodo,superblock,permisos,disk_file);
+                                if(retorno_axu == -1){
+                                    printErr("Ocurrio un error al actaulizar permisos recursivamente");
+                                    return -1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+    return 0;
+}

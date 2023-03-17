@@ -42,6 +42,7 @@ void fn_move();
 void fn_find();
 void fn_chown();
 void fn_chgrp();
+void fn_chmod();
 
 
 
@@ -84,6 +85,7 @@ void Analizador::analizarTipo(string comando){
     regex find("[f|F][i|I][n|N][d|D]" );
     regex chown("[c|C][h|H][o|O][w|W][n|N]" );
     regex chgrp("[c|C][h|H][G|g][r|R][p|P]" );
+    regex chmod("[c|C][h|H][m|M][o|O][d|D]" );
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -285,6 +287,17 @@ void Analizador::analizarTipo(string comando){
         fn_chgrp();
         cout<<" ---- Termino chgrp ---- "<<endl;
     }
+    else if(regex_search(comando,chmod) == 1){
+        comando = regex_replace(comando,chmod, "");
+        cout<<" ---- Se dectecto chmod ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_chmod();
+        cout<<" ---- Termino chmod ---- "<<endl;
+
+    }
+
+
 
 
 
@@ -1017,6 +1030,49 @@ void fn_chgrp(){
     Users *user_cmd = new Users();
     user_cmd->chgrp(usr,grp);
 }
+
+void fn_chmod(){
+    string path;
+    string ugo_str;
+    bool r = false;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "ugo"){
+            ugo_str = comando_entrada.valor;
+        }else if(comando_entrada.comando == "r"){
+            r = true;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio path");
+        return;
+    }
+
+    if (ugo_str.empty()){
+        printErr("Falto el parametro obligatorio ugo_str");
+        return;
+    }
+
+    int ugo;
+    try {
+        ugo = stoi(ugo_str);
+    }catch(...){
+        printErr("EL valor de ugo debe ser un digito");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->chmod(path,ugo,r);
+}
+
 
 
 

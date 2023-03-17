@@ -116,6 +116,8 @@ class Structs {
     static void recorrer_find(Structs::Inodes inodo_ccr,Structs::Superblock superblock , FILE *disk_file,int profundidad,int tipo);
     static int Update_own_inodo(int indice_inodo, Structs::Superblock superblock,int usr,int grp,FILE *disk_file);
     static int cambiar_propietario(Structs::Superblock superblock , FILE *disk_file,int no_inodo,int usr, int grp);
+    static int Update_perm_inodo(int indice_inodo, Structs::Superblock superblock,int permisos,FILE *disk_file);
+    static int cambiar_permisos(Structs::Superblock superblock , FILE *disk_file,int no_inodo,int permisos);
 
 
 };
