@@ -21,6 +21,7 @@ public:
     void find(string path,int tipo);
     void chown(string path,string usr,bool r);
     void chmod(string path,int ugo,bool r);
+    void recovery(string id);
 
 };
 

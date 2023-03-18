@@ -626,3 +626,29 @@ void FileManager::chmod(string path, int ugo, bool r) {
     fclose(rfile);
     printExitoso("Se ejecuto correctamente chmod");
 }
+
+void delay(int secs);
+void delay(int secs) {
+    for(int i = (time(NULL) + secs); time(NULL) != i; time(NULL));
+}
+
+void FileManager::recovery(string id) {
+    bool recuperado = false;
+    for(int i=0; i< loss_list.size() ; i++){
+        if( loss_list.at(i) == id){
+            recuperado = true;
+            loss_list.erase(loss_list.begin() +i);
+            break;
+        }
+    }
+
+    if(recuperado){
+        print("REcuperadno sistema....");
+        delay(8);
+        printExitoso("Se ejecuto correctamente recovery");
+    }else{
+        printErr("EL id buscado no esta danado");
+    }
+
+}
+
