@@ -652,3 +652,15 @@ void FileManager::recovery(string id) {
 
 }
 
+void FileManager::loss(string id) {
+    int retono = Buscar_Pmontada_id(id);
+
+    if(retono == -1){
+        printErr("NO existe la particion a danar");
+        return;
+    }
+
+    loss_list.push_back(id);
+    printExitoso("Se ejecuto correctamente loss");
+}
+

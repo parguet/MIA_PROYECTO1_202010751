@@ -44,6 +44,7 @@ void fn_chown();
 void fn_chgrp();
 void fn_chmod();
 void  fn_recovery();
+void fn_loss();
 
 
 
@@ -89,6 +90,7 @@ void Analizador::analizarTipo(string comando){
     regex chmod("[c|C][h|H][m|M][o|O][d|D]" );
     regex pause("[p|P][a|A][u|U][s|S][e|E]" );
     regex recovery("[r|R][e|E][c|C][o|O][v|V][e|E][r|R][y|Y]" );
+    regex loss("[l|L][o|O][s|S][s|S]" );
 
 
     regex execute("[e|E][x|X][e|E][c|C][u|U][t|T][e|E]" );
@@ -319,7 +321,14 @@ void Analizador::analizarTipo(string comando){
         fn_recovery();
         cout<<" ---- Termino recovery ---- "<<endl;
     }
-
+    else if(regex_search(comando,loss) == 1){
+        comando = regex_replace(comando,loss, "");
+        cout<<" ---- Se dectecto loss ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_loss();
+        cout<<" ---- Termino loss ---- "<<endl;
+    }
 
 
 
@@ -1120,7 +1129,28 @@ void  fn_recovery(){
     fm_cmd->recovery(id);
 }
 
+void fn_loss(){
+    string id;
 
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "id"){
+            id = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (id.empty()){
+        printErr("Falto el parametro obligatorio id");
+        return;
+    }
+
+    FileManager *fm_cmd = new FileManager();
+    fm_cmd->loss(id);
+}
 
 
 

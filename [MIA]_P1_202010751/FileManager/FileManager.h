@@ -22,6 +22,7 @@ public:
     void chown(string path,string usr,bool r);
     void chmod(string path,int ugo,bool r);
     void recovery(string id);
+    void loss(string id);
 
 };
 
