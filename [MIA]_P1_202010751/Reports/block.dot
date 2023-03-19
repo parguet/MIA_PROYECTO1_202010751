@@ -1,0 +1,2575 @@
+digraph G {
+a0[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_0</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..G</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">user.txt</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">bin</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">2</TD>
+</TR>
+
+</TABLE>>]; 
+
+a1[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_1</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">1,G,root1,U,root,root,1232,G,usuarios3,G,adm0,G,mail5,G,new</TD>
+</TR>
+
+</TABLE>>]; 
+
+a0-> a1
+
+a2[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_2</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">s6,G,sys2,U,root,usuario1,password3,U,usuarios,user1,abc0,U,</TD>
+</TR>
+
+</TABLE>>]; 
+
+a1-> a2
+
+a3[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_3</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">usuarios,user2,abc</TD>
+</TR>
+
+</TABLE>>]; 
+
+a2-> a3
+
+a4[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_4</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">2</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a3-> a4
+
+a5[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_5</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">boot</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">cdrom</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">4</TD>
+</TR>
+
+</TABLE>>]; 
+
+a4-> a5
+
+a6[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_6</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a5-> a6
+
+a7[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_7</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">4</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a6-> a7
+
+a8[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_8</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">dev</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">5</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">etc</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">6</TD>
+</TR>
+
+</TABLE>>]; 
+
+a7-> a8
+
+a9[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_9</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">5</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a8-> a9
+
+a10[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_10</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">6</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a9-> a10
+
+a11[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_11</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">home</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">7</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">lib</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">8</TD>
+</TR>
+
+</TABLE>>]; 
+
+a10-> a11
+
+a12[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_12</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">7</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">archivos</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">21</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">serchiboi</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">36</TD>
+</TR>
+
+</TABLE>>]; 
+
+a11-> a12
+
+a13[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_13</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">8</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a12-> a13
+
+a14[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_14</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">lib64</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">9</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">media</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">10</TD>
+</TR>
+
+</TABLE>>]; 
+
+a13-> a14
+
+a15[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_15</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">9</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a14-> a15
+
+a16[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_16</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">10</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a15-> a16
+
+a17[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_17</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">mnt</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">11</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">opt</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">12</TD>
+</TR>
+
+</TABLE>>]; 
+
+a16-> a17
+
+a18[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_18</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">11</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a17-> a18
+
+a19[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_19</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">12</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a18-> a19
+
+a20[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_20</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">proc</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">13</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">run</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">14</TD>
+</TR>
+
+</TABLE>>]; 
+
+a19-> a20
+
+a21[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_21</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">13</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a20-> a21
+
+a22[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_22</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">14</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a21-> a22
+
+a23[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_23</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">sbin</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">15</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">snap</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">16</TD>
+</TR>
+
+</TABLE>>]; 
+
+a22-> a23
+
+a24[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_24</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">15</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a23-> a24
+
+a25[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_25</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">16</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a24-> a25
+
+a26[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_26</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">srv</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">17</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">sys</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">18</TD>
+</TR>
+
+</TABLE>>]; 
+
+a25-> a26
+
+a27[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_27</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">17</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a26-> a27
+
+a28[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_28</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">18</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a27-> a28
+
+a29[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_29</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..w</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">tmp</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">19</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">var</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">20</TD>
+</TR>
+
+</TABLE>>]; 
+
+a28-> a29
+
+a30[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_30</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">19</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVB</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a29-> a30
+
+a31[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_31</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">20</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVA</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a30-> a31
+
+a32[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_32</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">21</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">7</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">user</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">22</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">carpeta1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">25</TD>
+</TR>
+
+</TABLE>>]; 
+
+a31-> a32
+
+a33[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_33</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">22</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV8</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">21</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">docs</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">23</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a32-> a33
+
+a34[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_34</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">23</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">22</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a33-> a34
+
+a36[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_36</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">25</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV:</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">21</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">carpeta2</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">26</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S6</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a34-> a36
+
+a37[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_37</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">26</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV5</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">25</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">carpeta3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">27</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a36-> a37
+
+a38[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_38</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">27</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">26</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">carpeta4</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">28</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S ,</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a37-> a38
+
+a39[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_39</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">28</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">27</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">carpeta5</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">29</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a38-> a39
+
+a40[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_40</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">29</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aVl</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">28</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a39-> a40
+
+a43[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_43</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.WV X</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">23</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">Tarea2.txt</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">31</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">P</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a40-> a43
+
+a44[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_44</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">0123456789012345678901234567890123456789012345678901234567890123</TD>
+</TR>
+
+</TABLE>>]; 
+
+a43-> a44
+
+a45[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_45</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">4567890123456789012345678901234567890123456789012345678901234567</TD>
+</TR>
+
+</TABLE>>]; 
+
+a44-> a45
+
+a46[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_46</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">8901234567890123456789012345678901234567890123456789012345678901</TD>
+</TR>
+
+</TABLE>>]; 
+
+a45-> a46
+
+a47[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_47</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">2345678901234567890123456789012345678901234567890123456789012345</TD>
+</TR>
+
+</TABLE>>]; 
+
+a46-> a47
+
+a48[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_48</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">6789012345678901234567890123456789012345678901234567890123456789</TD>
+</TR>
+
+</TABLE>>]; 
+
+a47-> a48
+
+a49[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_49</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">0123456789012345678901234567890123456789012345678901234567890123</TD>
+</TR>
+
+</TABLE>>]; 
+
+a48-> a49
+
+a50[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_50</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">4567890123456789012345678901234567890123456789012345678901234567</TD>
+</TR>
+
+</TABLE>>]; 
+
+a49-> a50
+
+a51[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_51</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">8901234567890123456789012345678901234567890123456789012345678901</TD>
+</TR>
+
+</TABLE>>]; 
+
+a50-> a51
+
+a52[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_52</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">2345678901234567890123456789012345678901234567890123456789012345</TD>
+</TR>
+
+</TABLE>>]; 
+
+a51-> a52
+
+a53[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_53</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">6789012345678901234567890123456789012345678901234567890123456789</TD>
+</TR>
+
+</TABLE>>]; 
+
+a52-> a53
+
+a54[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_54</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">0123456789012345678901234567890123456789012345678901234567890123</TD>
+</TR>
+
+</TABLE>>]; 
+
+a53-> a54
+
+a55[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_55</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69"></TD>
+<TD bgcolor="#f6ee69">4567890123456789012345678901234567890123456789012345678901234567</TD>
+</TR>
+
+</TABLE>>]; 
+
+a54-> a55
+
+a60[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_60</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">36</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">7</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">archivos</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">37</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S8</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a55-> a60
+
+a61[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_61</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">37</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV8</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">36</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">archivos 19</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">38</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a60-> a61
+
+a62[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_62</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">38</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">37</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">no</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">39</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a61-> a62
+
+a63[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_63</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">39</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">38</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">tiene</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">40</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a62-> a63
+
+a64[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_64</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">40</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">39</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">que</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">41</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/Sp</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a63-> a64
+
+a65[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_65</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">41</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">40</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">hacerla</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">42</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/SP</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a64-> a65
+
+a66[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_66</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">42</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">41</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">por</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">43</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a65-> a66
+
+a67[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_67</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">43</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">42</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">permisos</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">44</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a66-> a67
+
+a68[shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#68d9e2"><TR>
+<TD bgcolor="#f6ee69">Bloque_68</TD>
+<TD bgcolor="#f6ee69"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">.</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">44</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">..aV</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">43</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">x1W</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_name</TD>
+<TD bgcolor="#f6ee69">/S</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#f6ee69">b_inodo</TD>
+<TD bgcolor="#f6ee69">-1</TD>
+</TR>
+
+</TABLE>>]; 
+
+a67-> a68
+
+}

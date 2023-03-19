@@ -1,0 +1,28 @@
+digraph G {
+
+  a0 [shape=none label=<
+  <TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="red">
+  
+ <TR>
+  <TD bgcolor="yellow">docs</TD>
+  </TR>  
+  <TR>
+  <TD bgcolor="yellow">Permisos</TD>
+  <TD bgcolor="yellow">Propietario</TD>
+  <TD bgcolor="yellow">Grupo</TD>
+  <TD bgcolor="yellow">Tamano</TD>
+  <TD bgcolor="yellow">Fecha</TD>
+  <TD bgcolor="yellow">Tipo</TD>
+  <TD bgcolor="yellow">Name</TD>
+  </TR><TR>
+  <TD bgcolor="#57fcc3">664</TD>
+  <TD bgcolor="#57fcc3">2</TD>
+  <TD bgcolor="#57fcc3">1</TD>
+  <TD bgcolor="#57fcc3">72</TD>
+  <TD bgcolor="#57fcc3">20/12/2022 19:11</TD>
+  <TD bgcolor="#57fcc3">1</TD>
+  <TD bgcolor="#57fcc3">Tarea2.txt</TD>
+  </TR>
+
+</TABLE>>];
+}

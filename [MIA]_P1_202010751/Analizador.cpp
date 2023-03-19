@@ -360,7 +360,7 @@ void Analizador::analizarTipo(string comando){
         cout<<" ---- Termino fdisk ---- "<<endl;
 
     }
-    else if(regex_search(comando,rep)==1){
+    else if(regex_search(comando,rep) == 1){
         comando.erase(0, 1);
         comando.erase(0, 1);
         comando.erase(0, 1);
@@ -369,7 +369,6 @@ void Analizador::analizarTipo(string comando){
         readTokens(comando);
         fn_rep();
         cout<<" ---- Termino rep ---- "<<endl;
-
     }
 
 }

@@ -1,0 +1,92 @@
+digraph G {
+a0 [shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="red">
+<TR>
+<TD bgcolor="#97ffa4">s_filesystem_type</TD>
+<TD bgcolor="#97ffa4">3</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_inodes_count</TD>
+<TD bgcolor="#97ffa4">2243</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_blocks_count</TD>
+<TD bgcolor="#97ffa4">6729</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_free_blocks_count</TD>
+<TD bgcolor="#97ffa4">6727</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_free_inodes_count</TD>
+<TD bgcolor="#97ffa4">2241</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_mtime</TD>
+<TD bgcolor="#97ffa4">24/03/2023 01:19</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_umtime</TD>
+<TD bgcolor="#97ffa4">24/03/2023 01:19</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_mnt_count</TD>
+<TD bgcolor="#97ffa4">1</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_magic</TD>
+<TD bgcolor="#97ffa4">61267</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_inode_size</TD>
+<TD bgcolor="#97ffa4">128</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_block_size</TD>
+<TD bgcolor="#97ffa4">64</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_fist_ino</TD>
+<TD bgcolor="#97ffa4">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_first_blo</TD>
+<TD bgcolor="#97ffa4">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_bm_inode_start</TD>
+<TD bgcolor="#97ffa4">26226002</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_bm_block_start</TD>
+<TD bgcolor="#97ffa4">26228245</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_inode_start</TD>
+<TD bgcolor="#97ffa4">26234974</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#97ffa4">s_block_start</TD>
+<TD bgcolor="#97ffa4">26522078</TD>
+</TR>
+
+
+
+</TABLE>>];
+}

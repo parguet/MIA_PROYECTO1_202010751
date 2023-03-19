@@ -1,0 +1,166 @@
+digraph G {
+a0 [shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="#fa734f">
+<TR>
+  <TD bgcolor="#e280ff">REPORTE_Journaling</TD>
+  <TD bgcolor="#e280ff"></TD>
+  <TD bgcolor="#e280ff"></TD>
+  <TD bgcolor="#e280ff"></TD>
+  </TR><TR>
+  <TD bgcolor="#e280ff">Operacion</TD>
+  <TD bgcolor="#e280ff">Path</TD>
+  <TD bgcolor="#e280ff">Contenido</TD>
+  <TD bgcolor="#e280ff">Fecha</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:07</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkfile</TD>
+  <TD bgcolor="#fcdc6c">/users.txt</TD>
+  <TD bgcolor="#fcdc6c">1,G,root1,U,root,root,123</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:07</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/bin</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/boot</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/cdrom</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/dev</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/etc</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/home</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/lib</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/lib64</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/media</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/mnt</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/opt</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/proc</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/run</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/sbin</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/snap</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/srv</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/sys</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir</TD>
+  <TD bgcolor="#fcdc6c">/tmp</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir</TD>
+  <TD bgcolor="#ffffff">/var</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir -p</TD>
+  <TD bgcolor="#fcdc6c">/home/archivos/user/docs/usac</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkdir -p</TD>
+  <TD bgcolor="#ffffff">/home/archivos/carpeta1/carpeta2/carpeta3/carpeta4/carpeta5</TD>
+  <TD bgcolor="#ffffff">-</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkfile</TD>
+  <TD bgcolor="#fcdc6c">/home/archivos/user/docs/Tarea.txt</TD>
+  <TD bgcolor="#fcdc6c">012345678901234567890123456789012345678901234567890123456789012345678901234</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">mkfile</TD>
+  <TD bgcolor="#ffffff">/home/archivos/user/docs/Tarea2.txt</TD>
+  <TD bgcolor="#ffffff">0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkfile -r</TD>
+  <TD bgcolor="#fcdc6c">/home/archivos/user/docs/usac/archivos/proyectos/fase1/entrada.txt456789012345678901234567890123456</TD>
+  <TD bgcolor="#fcdc6c">890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:11</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">delete123</TD>
+  <TD bgcolor="#ffffff">/home/archivos/user/docs/usac4567890123456789012345678901234567890123456789012345678901234567890123</TD>
+  <TD bgcolor="#ffffff">-67890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:14</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">delete890</TD>
+  <TD bgcolor="#fcdc6c">/home/archivos/user/docs/Tarea.txt67890123456789012345678901234567890123456789012345678901234567890</TD>
+  <TD bgcolor="#fcdc6c">-3456789012345678901234567890123456789012345678901234567890123456789012345678901234567</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:14</TD>
+  </TR><TR>
+  <TD bgcolor="#ffffff">chmod</TD>
+  <TD bgcolor="#ffffff">/home/archivos/user/docs/Tarea2.txt</TD>
+  <TD bgcolor="#ffffff">1</TD>
+  <TD bgcolor="#ffffff">20/12/2022 19:17</TD>
+  </TR><TR>
+  <TD bgcolor="#fcdc6c">mkdir -p</TD>
+  <TD bgcolor="#fcdc6c">/home/serchiboi/archivos/archivos 19/no/tiene/que/hacerla/por/permisos</TD>
+  <TD bgcolor="#fcdc6c">-</TD>
+  <TD bgcolor="#fcdc6c">20/12/2022 19:17</TD>
+  </TR>
+</TABLE>>];
+}

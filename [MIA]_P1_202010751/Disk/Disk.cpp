@@ -385,10 +385,10 @@ void Disk::mount(string path, string name) {
             Structs::Partition parctiacion_encontrada;
             parctiacion_encontrada = mbr_data.partitions[i_particion];
 
-            if (parctiacion_encontrada.type == 'e'){
+            /*if (parctiacion_encontrada.type == 'e'){
                 printErr("Err No se puede montar particion extendida");
                 return;
-            }
+            }*/
 
             int i_encontroMontada = Buscar_Pmontada_name_path(name,path);
             if (i_encontroMontada != -1){
@@ -525,13 +525,20 @@ int ObtenerDesplazamiento_Pnombre(string name,Structs::MBR mbr_data){
 }
 
 
-
 void Disk::rep_disk(string id, string path) {
     string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
     string comando1 = "mkdir -p " + direccion_sinarchivo + "";
     system(comando1.c_str());
 
-    FILE *disk_file = fopen(path.c_str(), "rb+");
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+
+
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
     if(disk_file != NULL){
         string DOT = "digraph D {\n"
                      "subgraph cluster_0 {\n"
@@ -555,14 +562,27 @@ void Disk::rep_disk(string id, string path) {
             if(x.type == 'p'){
                 cadena += "Primaria";
             }else{
-                cadena += "{Extendida";
+                Structs::EBR EBR_ccr;
+                fseek(disk_file, x.start, SEEK_SET);
+                fread(&EBR_ccr, sizeof(Structs::EBR), 1, disk_file);
+                if (EBR_ccr.size ==0){
+                    cadena += "Extendida";
+                    float size_ocupado = (float)x.size*100/(float)size_total;
+                    cadena += "\\n" + to_string(size_ocupado) + "%";
+                }else{
+                    cadena += "{Extendida";
+                }
+
             }
 
             cadena += "\\n" + convertToString(x.name,16);
             size_libre_total -= x.size;
             if(x.type != 'e'){
-                float size_ocupado =  float(x.size*100)/size_total;
+                int numerador = x.size ;
+               // float size_ocupado =  float(x.size*100)/(float)size_total;
+                float size_ocupado = (float)x.size*100/(float)size_total;
                 cadena += "\\n" + to_string(size_ocupado) + "%";
+
             }else{
                 int size_libre_e = x.size;
                 Structs::EBR EBR_ccr;
@@ -580,7 +600,7 @@ void Disk::rep_disk(string id, string path) {
                             cadena +="|EBR";
                         }
                         cadena +="|Logica \\n";
-                        float size_ocupado =  float(EBR_ccr.size*100)/size_total;
+                        float size_ocupado =  (float)EBR_ccr.size*100/(float)size_total;
                         size_libre_e -= EBR_ccr.size;
                         cadena += to_string(size_ocupado) +  "%";
 
@@ -591,7 +611,8 @@ void Disk::rep_disk(string id, string path) {
 
                     if(size_libre_e >0){
                         cadena +="|Libre\\n";
-                        float size_ocupado =  float(size_libre_e*100)/size_total;
+                        float size_ocupado =  (float)size_libre_e*100/(float)size_total;
+
                         cadena += to_string(size_ocupado) + "%";
                     }
                     cadena += "}}";
@@ -601,22 +622,23 @@ void Disk::rep_disk(string id, string path) {
         }
         if(size_libre_total >0){
             DOT +="|Libre\\n";
-            float size_ocupado =  float(size_libre_total*100)/size_total;
+            float size_ocupado =  (float)size_libre_total*100/(float)size_total;
             DOT += to_string(size_ocupado) + "%";
         }
 
         DOT += "\"];\n}}";
         //print(DOT);
-        exportDOT(DOT,"/home/parguet/Escritorio/mbr.dot",path);
+        exportDOT(DOT,"../Reports/disk.dot",path);
     }else{
-        cout << "\033[1;31m" << "Error: " <<  "no se puedo abrir el disco" << "\033[0m"<< endl;
+        printErr("no se puedo abrir el disco");
         fclose(disk_file);
         return;
     }
 
     fclose(disk_file);
-    cout << "\033[1;32m" <<   "Se ejecuto correctamente el reporte disk" << "\033[0m"<< endl;
+    printExitoso("Se ejecuto correctamente el reporte disk");
 }
+
 
 
 string convertToString(char* a, int size){
@@ -643,7 +665,6 @@ string agregar_dot_mbr(string parametro,string valor,string color){
 }
 
 void exportDOT(string DOT,string dot_name,string path){
-    fopen(dot_name.c_str(), "w+");
     FILE *dot_file = fopen(dot_name.c_str(), "w+");
     fwrite(DOT.c_str(), DOT.length(), 1, dot_file);
     fclose(dot_file);
@@ -657,7 +678,6 @@ void exportDOT(string DOT,string dot_name,string path){
     }
     system(dot_svg.c_str());
 }
-
 
 
 string obtenerFecha() {

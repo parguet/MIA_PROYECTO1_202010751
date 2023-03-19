@@ -1,0 +1,170 @@
+digraph G {
+a0 [shape=none label=<
+<TABLE cellspacing="3" cellpadding="2" style="rounded" bgcolor="red">
+<TR>
+<TD bgcolor="yellow">REPORTE_MBR</TD>
+<TD bgcolor="yellow"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="yellow">tamano</TD>
+<TD bgcolor="yellow">105906176</TD>
+</TR>
+
+<TR>
+<TD bgcolor="yellow">fecha_creacion</TD>
+<TD bgcolor="yellow">24/03/2023 00:47</TD>
+</TR>
+
+<TR>
+<TD bgcolor="yellow">disk_signature</TD>
+<TD bgcolor="yellow">1063</TD>
+</TR>
+
+
+<TR>
+<TD bgcolor="#c96dfa">PARTICION</TD>
+<TD bgcolor="#c96dfa"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">status</TD>
+<TD bgcolor="#c96dfa">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">type</TD>
+<TD bgcolor="#c96dfa">e</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">fit</TD>
+<TD bgcolor="#c96dfa">b</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">start</TD>
+<TD bgcolor="#c96dfa">145</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">size</TD>
+<TD bgcolor="#c96dfa">26214400</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">name</TD>
+<TD bgcolor="#c96dfa">part1</TD>
+</TR>
+
+
+<TR>
+<TD bgcolor="#82fa6d">PARTICION</TD>
+<TD bgcolor="#82fa6d"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">status</TD>
+<TD bgcolor="#82fa6d">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">type</TD>
+<TD bgcolor="#82fa6d">p</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">fit</TD>
+<TD bgcolor="#82fa6d">b</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">start</TD>
+<TD bgcolor="#82fa6d">26214546</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">size</TD>
+<TD bgcolor="#82fa6d">26214400</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">name</TD>
+<TD bgcolor="#82fa6d">part2</TD>
+</TR>
+
+
+<TR>
+<TD bgcolor="#c96dfa">PARTICION</TD>
+<TD bgcolor="#c96dfa"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">status</TD>
+<TD bgcolor="#c96dfa">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">type</TD>
+<TD bgcolor="#c96dfa">p</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">fit</TD>
+<TD bgcolor="#c96dfa">b</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">start</TD>
+<TD bgcolor="#c96dfa">52428947</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">size</TD>
+<TD bgcolor="#c96dfa">26214400</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#c96dfa">name</TD>
+<TD bgcolor="#c96dfa">part3</TD>
+</TR>
+
+
+<TR>
+<TD bgcolor="#82fa6d">PARTICION</TD>
+<TD bgcolor="#82fa6d"></TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">status</TD>
+<TD bgcolor="#82fa6d">0</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">type</TD>
+<TD bgcolor="#82fa6d">p</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">fit</TD>
+<TD bgcolor="#82fa6d">b</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">start</TD>
+<TD bgcolor="#82fa6d">78643348</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">size</TD>
+<TD bgcolor="#82fa6d">26214400</TD>
+</TR>
+
+<TR>
+<TD bgcolor="#82fa6d">name</TD>
+<TD bgcolor="#82fa6d">part4</TD>
+</TR>
+
+
+</TABLE>>];
+}
