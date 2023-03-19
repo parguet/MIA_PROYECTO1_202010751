@@ -12,6 +12,7 @@
 #include "FileSystem/FileSystem.h"
 #include "Users/Users.h"
 #include "FileManager/FileManager.h"
+#include "Global/Global.h"
 
 using namespace std;
 void addToken(string cadena,string tipo);
@@ -45,7 +46,7 @@ void fn_chgrp();
 void fn_chmod();
 void  fn_recovery();
 void fn_loss();
-
+void fn_rep();
 
 
 
@@ -360,17 +361,13 @@ void Analizador::analizarTipo(string comando){
 
     }
     else if(regex_search(comando,rep)==1){
-        comando = regex_replace(comando,rep,"");
+        comando.erase(0, 1);
+        comando.erase(0, 1);
+        comando.erase(0, 1);
         cout<<" ---- Se dectecto rep ---- "<<endl;
-        cout << comando << endl;
-        //cout<<" ---- rep mbr ---- "<<endl;
-        //Disk *disk_cmd = new Disk();
-        //disk_cmd->rep_mbr("id","/home/parguet/Escritorio/Disco1.dsk");
-        //cout<<" ---- end rep mbr ---- "<<endl;
-        cout<<" ---- rep disk ---- "<<endl;
-        Disk *disk_cmd = new Disk();
-        disk_cmd->rep_disk("id","/home/parguet/Escritorio/Disco1.dsk");
-        cout<<" ---- end rep disk ---- "<<endl;
+        cout<<comando<<endl;
+        readTokens(comando);
+        fn_rep();
         cout<<" ---- Termino rep ---- "<<endl;
 
     }
@@ -1435,4 +1432,131 @@ void addToken(string cadena,string tipo){
     tk.value = cadena;
     tk.tipo = tipo;
     colaTokens.push(tk);
+}
+
+
+
+
+void fn_rep(){
+    //delay(2);
+    string id;
+    string path;
+    string name;
+    string ruta;
+
+    comando comando_entrada = obtenerComando();
+    while(!comando_entrada.comando.empty()){
+        if(comando_entrada.comando == "id"){
+            id = comando_entrada.valor;
+        }else if(comando_entrada.comando == "path"){
+            path = comando_entrada.valor;
+        }else if(comando_entrada.comando == "name") {
+            name = comando_entrada.valor;
+        }else if(comando_entrada.comando == "ruta"){
+            ruta = comando_entrada.valor;
+        }else{
+            printErr("Parametro erroneo");
+            return;
+        }
+        comando_entrada = obtenerComando();
+    }
+
+    if (id.empty()){
+        printErr("Falto el parametro obligatorio usr");
+        return;
+    }
+
+    if (path.empty()){
+        printErr("Falto el parametro obligatorio pass");
+        return;
+    }
+
+    if (name.empty()){
+        printErr("Falto el parametro obligatorio id");
+        return;
+    }
+
+    if(ID_loos(id)){
+        printErr("Sistema danado, porfavor inicie recuperacion de disco o formatee");
+        return;
+    }
+
+    if(name == "mbr"){
+        cout<<" ---- rep mbr ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->rep_mbr(id,path);
+        cout<<" ---- end rep mbr ---- "<<endl;
+    }
+    else if(name == "disk" ){
+        cout<<" ---- rep disk ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->rep_disk(id,path);
+        cout<<" ---- end rep disk ---- "<<endl;
+    }
+    else if(name == "bm_inode" ){
+        cout<<" ---- rep bm_inode ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->bm_inode(id,path);
+        cout<<" ---- end rep bm_inode ---- "<<endl;
+    }
+    else if(name == "bm_block" ){
+        cout<<" ---- rep bm_block ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->bm_block(id,path);
+        cout<<" ---- end rep bm_block ---- "<<endl;
+    }
+    else if(name == "inode" ){
+        cout<<" ---- rep inode ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->inode(id,path);
+        cout<<" ---- end rep inode ---- "<<endl;
+    }
+    else if(name == "block" ){
+        cout<<" ---- rep block ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->block(id,path);
+        cout<<" ---- end rep block ---- "<<endl;
+    }
+    else if(name == "sb" ){
+        cout<<" ---- rep sb ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->sb(id,path);
+        cout<<" ---- end rep sb ---- "<<endl;
+    }
+    else if(name == "tree" ){
+        cout<<" ---- rep tree ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->tree(id,path);
+        cout<<" ---- end rep tree ---- "<<endl;
+    }
+    else if(name == "journaling" ){
+        cout<<" ---- rep journaling ---- "<<endl;
+        Disk *disk_cmd = new Disk();
+        disk_cmd->journaling(id,path);
+        cout<<" ---- end rep journaling ---- "<<endl;
+    }
+    else if(name == "file" ){
+        cout<<" ---- rep file ---- "<<endl;
+        if (ruta.empty()){
+            printErr("Falto el parametro obligatorio ruta para reporte file");
+            return;
+        }
+        Disk *disk_cmd = new Disk();
+        disk_cmd->file(id,path,ruta);
+        cout<<" ---- end rep file ---- "<<endl;
+    }
+    else if(name == "ls" ){
+        cout<<" ---- rep ls ---- "<<endl;
+        if (ruta.empty()){
+            printErr("Falto el parametro obligatorio ruta para reporte file");
+            return;
+        }
+        Disk *disk_cmd = new Disk();
+        disk_cmd->ls(id,path,ruta);
+        cout<<" ---- end rep ls ---- "<<endl;
+    }
+    else{
+        printErr("Reporte inrreconocible");
+    }
+
 }

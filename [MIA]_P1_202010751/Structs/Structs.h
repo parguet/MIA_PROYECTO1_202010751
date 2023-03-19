@@ -118,6 +118,7 @@ class Structs {
     static int cambiar_propietario(Structs::Superblock superblock , FILE *disk_file,int no_inodo,int usr, int grp);
     static int Update_perm_inodo(int indice_inodo, Structs::Superblock superblock,int permisos,FILE *disk_file);
     static int cambiar_permisos(Structs::Superblock superblock , FILE *disk_file,int no_inodo,int permisos);
+    static string rep_ls(int no_inodo,MountedPartition partition_montada,FILE *disk_file);
 
 
 };

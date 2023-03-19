@@ -672,3 +672,722 @@ string obtenerFecha() {
 string format_day_prop(int field) {
     return (field < 10 ? "0" : "") + to_string(field);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//rep
+
+string rep_todo(Structs::Inodes inodo_ccr,Structs::Superblock superblock , FILE *disk_file,int no_inodo);
+string rep_todo(Structs::Inodes inodo_ccr,Structs::Superblock superblock , FILE *disk_file,int no_inodo){
+    string DOT = "Inodo" + to_string(no_inodo) + "[\nlabel=<\n";
+    DOT += "<table  border=\"0\" cellborder=\"1\" cellspacing=\"0\">\n";
+    DOT += "<tr><td colspan=\"2\" port='0'>Inodo" + to_string(no_inodo) + "</td></tr>\n";
+    DOT += "<tr><td>i_uid</td><td>" + to_string(inodo_ccr.i_uid) + "</td></tr>\n";
+    DOT += "<tr><td>i_gid</td><td>" + to_string(inodo_ccr.i_gid) + "</td></tr>\n";
+    DOT += "<tr><td>i_size</td><td>" + to_string(inodo_ccr.i_size) + "</td></tr>\n";
+    string fecha;
+    fecha = convertToString(inodo_ccr.i_atime,17);
+    DOT += "<tr><td>i_atime</td><td>" + fecha + "</td></tr>\n";
+    fecha = convertToString(inodo_ccr.i_ctime,17);
+    DOT += "<tr><td>i_ctime</td><td>" + fecha + "</td></tr>\n";
+    fecha = convertToString(inodo_ccr.i_mtime,17);
+    DOT += "<tr><td>i_mtime</td><td>" + fecha + "</td></tr>\n";
+    int tipo_f = 0;
+    if(inodo_ccr.i_type == 1){
+        tipo_f = 1;
+    }
+    DOT += "<tr><td>i_type</td><td>" + to_string(tipo_f)+ "</td></tr>\n";
+    string permisos = convertToString(inodo_ccr.i_perm,3);
+    DOT += "<tr><td>i_size</td><td>" + permisos + "</td></tr>\n";
+
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(contador<12){
+            //bloques directos
+            DOT += "<tr><td>AD" + to_string(contador+1) + "</td><td port='"+ to_string(contador + 1) + "'>" + to_string(i) + "</td></tr>\n";
+        }else{
+            //blooques indirectos
+            DOT += "<tr><td>AI" + to_string(contador+1) + "</td><td port='"+ to_string(contador + 1) + "'>" + to_string(i) + "</td></tr>\n";
+        }
+        contador++;
+    }
+    DOT += "</table>\n>];\n\n";
+
+    contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            if(contador<12){
+                //bloques directos
+                DOT+= "Inodo" + to_string(no_inodo) + ":" + to_string(contador + 1) + "-> Bloque" + to_string(i) +":0;\n\n";
+                DOT += "Bloque" + to_string(i) + "[\nlabel=<\n";
+                DOT += "<table  border=\"0\" cellborder=\"1\" cellspacing=\"0\">\n";
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                Structs::Folderblock carpeta;
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                fread(&carpeta, sizeof(Structs::Fileblock), 1, disk_file);
+
+                if(inodo_ccr.i_type == 0){
+                    //if(carpeta.b_content[0].b_inodo < superblock.s_blocks_count - superblock.s_free_blocks_count){
+                    DOT += "<tr><td colspan=\"2\" port='0'>Bloque" + to_string(i) + "</td></tr>\n";
+                    int contador_aux = 0;
+                    for(Structs::Content x: carpeta.b_content){
+                        string name = convertToString(x.b_name,12);
+                        if(contador_aux == 0)
+                            name  = ".";
+                        if(contador_aux == 1)
+                            name  = "..";
+                        if(x.b_inodo == -1)
+                            name = "";
+                        DOT += "<tr><td>" + name + "</td><td port='"+ to_string(contador_aux) + "'>" + to_string(x.b_inodo) + "</td></tr>\n";
+                        contador_aux++;
+                    }
+                    DOT += "</table>\n>];\n\n";
+                    contador_aux = 0;
+                    for(Structs::Content x: carpeta.b_content){
+                        if(x.b_inodo != -1 and x.b_name[0] != '.'){
+                            DOT+= "Bloque" + to_string(i) + ":" + to_string(contador_aux) +" -> Inodo" + to_string(x.b_inodo) +":0;\n\n";
+                            Structs::Inodes Inodo_sig;
+                            fseek(disk_file, superblock.s_inode_start +x.b_inodo * sizeof (Structs::Inodes), SEEK_SET);
+                            fread(&Inodo_sig, sizeof(Structs::Inodes), 1, disk_file);
+                            DOT += rep_todo(Inodo_sig,superblock,disk_file,x.b_inodo);
+                        }
+                        contador_aux++;
+                    }
+                }else{
+                    Structs::Fileblock archivos;
+                    fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                    fread(&archivos, sizeof(Structs::Fileblock), 1, disk_file);
+                    string contenido = convertToString(archivos.b_content,64);
+                    DOT += "<tr><td colspan=\"1\" port='0'>Bloque" + to_string(i) + "</td></tr>\n";
+                    DOT += "<tr><td>" + contenido + "</td></tr>\n";
+                    DOT += "</table>\n>];\n\n";
+                }
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+    return DOT;
+}
+
+string agregar_dot_journaling(string operacion,string path,string contenido,string fecha,string color);
+string agregar_dot_journaling(string operacion,string path,string contenido,string fecha,string color){
+    string DOT = "<TR>\n"
+                 "  <TD bgcolor=\""+color +"\">" + operacion + "</TD>\n"
+                                                               "  <TD bgcolor=\"" +color + "\">"+ path +"</TD>\n"
+                                                                                                        "  <TD bgcolor=\"" +color +"\">"+ contenido +"</TD>\n"
+                                                                                                                                                     "  <TD bgcolor=\""+color +"\">"+ fecha +"</TD>\n"
+                                                                                                                                                                                             "  </TR>";
+    return DOT;
+}
+
+void Disk::rep_mbr(string id,string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+    if(disk_file != NULL){
+        string DOT = "digraph G {\n"
+                     "a0 [shape=none label=<\n"
+                     "<TABLE cellspacing=\"3\" cellpadding=\"2\" style=\"rounded\" bgcolor=\"red\">\n";
+
+
+        Structs::MBR mbr_data;
+        fseek(disk_file, 0, SEEK_SET);
+        fread(&mbr_data, sizeof(Structs::MBR), 1, disk_file);
+
+        string fecha;
+        fecha = convertToString(mbr_data.FechaCreacion,17);
+
+
+        DOT += agregar_dot_mbr("REPORTE_MBR","","yellow");
+        DOT += agregar_dot_mbr("tamano",to_string(mbr_data.mbr_tamano),"yellow");
+        DOT += agregar_dot_mbr("fecha_creacion",fecha,"yellow");
+        DOT += agregar_dot_mbr("disk_signature",to_string(mbr_data.mbr_disk_signature),"yellow");
+        DOT += "\n";
+        int contador = 1;
+        for(Structs::Partition x: mbr_data.partitions){
+            if(x.name[0]== '~')
+                continue;
+            contador++;
+            string color;
+            if(contador % 2 ==0){
+                color = "#c96dfa";
+            }else{
+                color = "#82fa6d";
+            }
+            DOT += agregar_dot_mbr("PARTICION","",color);
+            string chars;
+            chars = x.status;
+            DOT += agregar_dot_mbr("status",chars,color);
+            chars = x.type;
+            DOT += agregar_dot_mbr("type", chars,color);
+            chars = x.fit;
+            DOT += agregar_dot_mbr("fit",chars,color);
+            DOT += agregar_dot_mbr("start", to_string(x.start),color);
+            DOT += agregar_dot_mbr("size",to_string(x.size),color);
+
+            string name;
+            name = convertToString(x.name,16);
+
+            DOT += agregar_dot_mbr("name",name,color);
+            DOT += "\n";
+            if(x.type == 'e'){
+                color = "#6dd6fa";
+                Structs::EBR EBR_ccr;
+                fseek(disk_file, x.start, SEEK_SET);
+                fread(&EBR_ccr, sizeof(Structs::EBR), 1, disk_file);
+                int desplazamiento = x.start;
+                if(EBR_ccr.size!=0){
+                    do{
+                        DOT += agregar_dot_mbr("EBR","",color);
+                        chars = EBR_ccr.status;
+                        DOT += agregar_dot_mbr("status",chars,color);
+                        chars = EBR_ccr.fit;
+                        DOT += agregar_dot_mbr("fit",chars,color);
+                        DOT += agregar_dot_mbr("start", to_string(EBR_ccr.start),color);
+                        DOT += agregar_dot_mbr("size", to_string(EBR_ccr.size),color);
+                        DOT += agregar_dot_mbr("next", to_string(EBR_ccr.next),color);
+                        name = convertToString(EBR_ccr.name,16);
+                        DOT += agregar_dot_mbr("name", name,color);
+                        DOT += "";
+                        desplazamiento += sizeof(Structs::EBR) + 1 + EBR_ccr.size + 1;
+                        fseek(disk_file, desplazamiento, SEEK_SET);
+                        fread(&EBR_ccr, sizeof(Structs::EBR), 1, disk_file);
+                    }while(EBR_ccr.size != 0);
+
+                }
+            }
+        }
+
+        DOT+="</TABLE>>];\n}";
+        //print(DOT);
+        exportDOT(DOT,"../Reports/mbr.dot",path);
+
+    }else{
+        printErr("no se puedo abrir el disco");
+        fclose(disk_file);
+        return;
+    }
+
+    fclose(disk_file);
+    printExitoso("Se ejecuto correctamente el reporte mbr");
+}
+
+void Disk::bm_inode(string id, string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+    if(disk_file != NULL){
+        Structs::Superblock superblock;
+        fseek(disk_file, particion_montada.start, SEEK_SET);
+        fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+        FILE *txt_file = fopen(path.c_str(), "wb");
+        int desplazamiento = superblock.s_bm_inode_start;
+        int contador = 0;
+        for (int i = 0; i < superblock.s_inodes_count ; ++i) {
+            char temp;
+            fseek(disk_file, desplazamiento + i, SEEK_SET);
+            fread(&temp, sizeof(temp), 1, disk_file);
+            fwrite(&temp, sizeof(temp), 1, txt_file);
+            if((i + 1) % 20 == 0){
+                temp = '\n';
+                fwrite(&temp, sizeof(temp), 1, txt_file);
+            }
+        }
+        fclose(txt_file);
+    }else{
+        printErr("no se puedo abrir el disco");
+        fclose(disk_file);
+        return;
+    }
+
+    fclose(disk_file);
+    printExitoso("Se ejecuto correctamente el reporte bm_inode");
+}
+
+
+void Disk::bm_block(string id, string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+    if(disk_file != NULL){
+        Structs::Superblock superblock;
+        fseek(disk_file, particion_montada.start, SEEK_SET);
+        fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+        FILE *txt_file = fopen(path.c_str(), "wb");
+        int desplazamiento = superblock.s_bm_block_start;
+        int contador = 0;
+        for (int i = 0; i < superblock.s_blocks_count ; ++i) {
+            char temp;
+            fseek(disk_file, desplazamiento + i, SEEK_SET);
+            fread(&temp, sizeof(temp), 1, disk_file);
+            fwrite(&temp, sizeof(temp), 1, txt_file);
+            if((i + 1) % 20 == 0){
+                temp = '\n';
+                fwrite(&temp, sizeof(temp), 1, txt_file);
+            }
+        }
+        fclose(txt_file);
+    }else{
+        printErr("no se puedo abrir el disco");
+        fclose(disk_file);
+        return;
+    }
+
+    fclose(disk_file);
+    printExitoso("Se ejecuto correctamente el reporte bm_block");
+}
+
+void Disk::inode(string id, string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+    if(disk_file != NULL){
+        Structs::Superblock superblock;
+        fseek(disk_file, particion_montada.start, SEEK_SET);
+        fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+        int desplazamiento_bm = superblock.s_bm_inode_start;
+        string DOT = "digraph G {\n";
+        int anterior = 0;
+        for (int i = 0; i < superblock.s_inodes_count ; ++i) {
+            char temp;
+            fseek(disk_file, desplazamiento_bm + i, SEEK_SET);
+            fread(&temp, sizeof(temp), 1, disk_file);
+
+            if(temp == '1'){
+                string DOT_inodo;
+                Structs::Inodes Inodo_crr;
+                fseek(disk_file, superblock.s_inode_start + i * sizeof(Structs::Inodes), SEEK_SET);
+                fread(&Inodo_crr, sizeof(Structs::Inodes), 1, disk_file);
+                DOT_inodo += "a" + to_string(i) + "[shape=none label=<\n"
+                                                  "<TABLE cellspacing=\"3\" cellpadding=\"2\" style=\"rounded\" bgcolor=\"#68d9e2\">";
+
+                DOT_inodo += agregar_dot_mbr("Inodo_" + to_string(i),"","#f6ee69");
+                DOT_inodo += agregar_dot_mbr("UID", to_string(Inodo_crr.i_uid),"#f6ee69");
+                DOT_inodo += agregar_dot_mbr("GID", to_string(Inodo_crr.i_gid),"#f6ee69");
+                DOT_inodo += agregar_dot_mbr("GID", to_string(Inodo_crr.i_size),"#f6ee69");
+                string fecha;
+                fecha = convertToString(Inodo_crr.i_atime,17);
+                DOT_inodo += agregar_dot_mbr("i_atime", fecha,"#f6ee69");
+                fecha = convertToString(Inodo_crr.i_ctime,17);
+                DOT_inodo += agregar_dot_mbr("i_ctime", fecha,"#f6ee69");
+                fecha = convertToString(Inodo_crr.i_mtime,17);
+                DOT_inodo += agregar_dot_mbr("i_mtime", fecha,"#f6ee69");
+                for (int j = 0; j < 15; ++j) {
+                    DOT_inodo += agregar_dot_mbr("i_block_" + to_string(j), to_string(Inodo_crr.i_block[j]),"#f6ee69");
+                }
+                int tipo_f = 0;
+                if(Inodo_crr.i_type == 1){
+                    tipo_f = 1;
+                }
+                DOT_inodo += agregar_dot_mbr("i_type", to_string(tipo_f),"#f6ee69");
+                string permisos = convertToString(Inodo_crr.i_perm,3);
+                DOT_inodo += agregar_dot_mbr("i_perm", permisos,"#f6ee69");
+                DOT_inodo += "</TABLE>>]; \n\n";
+
+                if(i - 1 >= 0){
+                    DOT_inodo += "a" + to_string(anterior) + "-> a"+ to_string(i) + "\n\n";
+                }
+                //print(DOT_inodo);
+                anterior = i;
+                DOT += DOT_inodo;
+            }
+        }
+        DOT += "}";
+        //print(DOT);
+        fclose(disk_file);
+        exportDOT(DOT,"../Reports/inode.dot",path);
+    }else{
+        printErr("no se puedo abrir el disco");
+        fclose(disk_file);
+        return;
+    }
+
+    printExitoso("Se ejecuto correctamente el reporte bm_inode");
+}
+
+void Disk::block(string id, string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+    if(disk_file != NULL){
+        Structs::Superblock superblock;
+        fseek(disk_file, particion_montada.start, SEEK_SET);
+        fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+        int desplazamiento_bm = superblock.s_bm_block_start;
+
+        string DOT = "digraph G {\n";
+        int anterior = 0;
+        bool validacion = true;
+        for (int i = 0; i < superblock.s_blocks_count ; ++i) {
+            char temp;
+            fseek(disk_file, desplazamiento_bm + i, SEEK_SET);
+            fread(&temp, sizeof(temp), 1, disk_file);
+
+            if(temp == '1'){
+                string DOT_block;
+
+                Structs::Folderblock Folder_ccr;
+                fseek(disk_file, superblock.s_block_start + i * sizeof(Structs::Folderblock), SEEK_SET);
+                fread(&Folder_ccr, sizeof(Structs::Folderblock), 1, disk_file);
+                DOT_block += "a" + to_string(i) + "[shape=none label=<\n"
+                                                  "<TABLE cellspacing=\"3\" cellpadding=\"2\" style=\"rounded\" bgcolor=\"#68d9e2\">";
+                DOT_block += agregar_dot_mbr("Bloque_" + to_string(i),"","#f6ee69");
+
+                if(Folder_ccr.b_content[0].b_inodo < superblock.s_blocks_count - superblock.s_free_blocks_count){
+                    for(Structs::Content x: Folder_ccr.b_content){
+                        string name = convertToString(x.b_name,12);
+                        DOT_block += agregar_dot_mbr("b_name",name,"#f6ee69");
+                        DOT_block += agregar_dot_mbr("b_inodo", to_string(x.b_inodo),"#f6ee69");
+                    }
+                }else{
+                    Structs::Fileblock File_ccr;
+                    fseek(disk_file, superblock.s_block_start + i * sizeof(Structs::Fileblock), SEEK_SET);
+                    fread(&File_ccr, sizeof(Structs::Fileblock), 1, disk_file);
+                    string contenido = convertToString(File_ccr.b_content,64);
+                    DOT_block += agregar_dot_mbr("",contenido,"#f6ee69");
+                }
+
+                DOT_block += "</TABLE>>]; \n\n";
+                if(i - 1 >= 0 ){
+                    DOT_block += "a" + to_string(anterior) + "-> a"+ to_string(i) + "\n\n";
+                }
+                anterior = i;
+                DOT += DOT_block;
+            }
+        }
+        DOT += "}";
+        //print(DOT);
+        fclose(disk_file);
+        exportDOT(DOT,"../Reports/block.dot",path);
+    }else{
+        printErr("no se puedo abrir el disco");
+        fclose(disk_file);
+        return;
+    }
+    printExitoso("Se ejecuto correctamente el reporte bm_inode");
+}
+
+void Disk::sb(string id, string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+    if(disk_file != NULL){
+        Structs::Superblock superblock;
+        fseek(disk_file, particion_montada.start, SEEK_SET);
+        fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+        string DOT = "digraph G {\n"
+                     "a0 [shape=none label=<\n"
+                     "<TABLE cellspacing=\"3\" cellpadding=\"2\" style=\"rounded\" bgcolor=\"red\">\n";
+
+        DOT += agregar_dot_mbr("s_filesystem_type",to_string(superblock.s_filesystem_type),"#97ffa4");
+        DOT += agregar_dot_mbr("s_inodes_count",to_string(superblock.s_inodes_count),"#97ffa4");
+        DOT += agregar_dot_mbr("s_blocks_count",to_string(superblock.s_blocks_count),"#97ffa4");
+        DOT += agregar_dot_mbr("s_free_blocks_count",to_string(superblock.s_free_blocks_count),"#97ffa4");
+        DOT += agregar_dot_mbr("s_free_inodes_count",to_string(superblock.s_free_inodes_count),"#97ffa4");
+        string chars;
+        chars = convertToString(superblock.s_mtime,17);
+        DOT += agregar_dot_mbr("s_mtime",chars,"#97ffa4");
+        chars = convertToString(superblock.s_umtime,17);
+        DOT += agregar_dot_mbr("s_umtime",chars,"#97ffa4");
+        DOT += agregar_dot_mbr("s_mnt_count",to_string(superblock.s_mnt_count),"#97ffa4");
+        DOT += agregar_dot_mbr("s_magic",to_string(superblock.s_magic),"#97ffa4");
+        DOT += agregar_dot_mbr("s_inode_size",to_string(superblock.s_inode_size),"#97ffa4");
+        DOT += agregar_dot_mbr("s_block_size",to_string(superblock.s_block_size),"#97ffa4");
+        DOT += agregar_dot_mbr("s_fist_ino",to_string(superblock.s_fist_ino),"#97ffa4");
+        DOT += agregar_dot_mbr("s_first_blo",to_string(superblock.s_first_blo),"#97ffa4");
+        DOT += agregar_dot_mbr("s_bm_inode_start",to_string(superblock.s_bm_inode_start),"#97ffa4");
+        DOT += agregar_dot_mbr("s_bm_block_start",to_string(superblock.s_bm_block_start),"#97ffa4");
+        DOT += agregar_dot_mbr("s_inode_start",to_string(superblock.s_inode_start),"#97ffa4");
+        DOT += agregar_dot_mbr("s_block_start",to_string(superblock.s_block_start),"#97ffa4");
+
+        DOT+="\n\n</TABLE>>];\n}";
+        exportDOT(DOT,"../Reports/sb.dot",path);
+
+
+    }else{
+        printErr("no se puedo abrir el disco");
+        fclose(disk_file);
+        return;
+    }
+
+    fclose(disk_file);
+    printExitoso("Se ejecuto correctamente el reporte sb");
+}
+
+
+void Disk::tree(string id,string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    //Buscando primer inodo
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+
+    //leendo primer inodo
+    Structs::Inodes InodoBuscado;
+    fseek(disk_file, superblock.s_inode_start, SEEK_SET);
+    fread(&InodoBuscado, sizeof(Structs::Inodes), 1, disk_file);
+    string DOT= "digraph H {\n"
+                "graph [pad=\"0.5\", nodesep=\"0.5\", ranksep=\"1\"];\n"
+                "node [shape=plaintext]\n"
+                "rankdir=LR;\n\n";
+
+    DOT += rep_todo(InodoBuscado,superblock,disk_file,0);
+    fclose(disk_file);
+    DOT += "\n}";
+    //print(DOT);
+    exportDOT(DOT,"../Reports/tree.dot",path);
+    printExitoso("Se ejecuto correctamente rep tree");
+}
+
+void Disk::journaling(string id, string path) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    FILE *disk_file = fopen(particion_montada.path.c_str(), "rb+");
+    if(disk_file != NULL){
+        string DOT = "digraph G {\n"
+                     "a0 [shape=none label=<\n"
+                     "<TABLE cellspacing=\"3\" cellpadding=\"2\" style=\"rounded\" bgcolor=\"#fa734f\">\n";
+
+        Structs::Superblock superblock;
+        fseek(disk_file, particion_montada.start, SEEK_SET);
+        fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+        if(superblock.s_filesystem_type != 3){
+            printErr("Sistema EXT2 no tiene Journal");
+            return;
+        }
+
+        Structs::Journaling journaling;
+        fseek(disk_file, particion_montada.start + sizeof (Structs::Superblock), SEEK_SET);
+        fread(&journaling, sizeof(Structs::Journaling), 1, disk_file);
+
+        DOT += agregar_dot_journaling("REPORTE_Journaling","","","","#e280ff");
+        DOT += agregar_dot_journaling("Operacion","Path","Contenido","Fecha","#e280ff");
+        int contador = 0;
+        for(Structs::Content_J x: journaling.contenido){
+            if(contador < journaling.ultimo + 1){
+                string color;
+                if((contador+2)%2 == 0 ){
+                    color = "#ffffff";
+                }else{
+                    color = "#fcdc6c";
+                }
+                string operacion = convertToString(x.operation,10);
+                string path = convertToString(x.path,100);
+                string contenido = convertToString(x.content,100);
+                string fecha = convertToString(x.date,17);
+                DOT += agregar_dot_journaling(operacion,path,contenido,fecha,color);
+            }else{
+                break;
+            }
+            contador++;
+        }
+
+        DOT += "\n";
+        DOT+="</TABLE>>];\n}";
+        //print(DOT);
+        fclose(disk_file);
+        exportDOT(DOT,"../Reports/journaling.dot",path);
+
+    }else{
+        printErr("no se puedo abrir el disco");
+        fclose(disk_file);
+        return;
+    }
+    printExitoso("Se ejecuto correctamente el reporte journaling");
+}
+
+void Disk::file(string id, string path, string ruta) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int no_inodo = Structs::BuscarInodo(ruta,particion_montada,superblock,rfile);
+    if(no_inodo == -1){
+        printErr("No se encontro archivo de ruta");
+        fclose(rfile);
+        return;
+    }
+
+    string cadena_leida = Structs::LecturaInodo(no_inodo,superblock,rfile);
+
+    if(cadena_leida.empty()){
+        printErr("No se ingreso ruta de un archivo file");
+        return;
+    }
+
+    string DOT = "digraph G {\n"
+                 "a0 [shape=none label=<\n"
+                 "<TABLE cellspacing=\"3\" cellpadding=\"2\" style=\"rounded\" bgcolor=\"red\">\n";
+
+    vector<string> div_path = split(path,'/');
+    string name_origen = div_path.at(div_path.size()-1);
+    DOT += agregar_dot_mbr("Reporte archivo " + name_origen,"Contenido","yellow");
+    DOT += agregar_dot_mbr("",cadena_leida,"yellow");
+    DOT+="</TABLE>>];\n}";
+    fclose(rfile);
+    exportDOT(DOT,"../Reports/file.dot",path);
+    printExitoso("Se ejecuto correctamente rep file");
+}
+
+void Disk::ls(string id, string path, string ruta) {
+    string direccion_sinarchivo = '"' + path.substr(0, path.find_last_of("/\\")) + '"';
+    string comando1 = "mkdir -p " + direccion_sinarchivo + "";
+    system(comando1.c_str());
+
+    int i_particion_montada = Buscar_Pmontada_id(id);
+    if(i_particion_montada == -1){
+        printErr("No se encontro el id de la particion montada");
+        return;
+    }
+    MountedPartition particion_montada = mounted_partitions.at(i_particion_montada);
+    Structs::Superblock superblock;
+    FILE *rfile = fopen(particion_montada.path.c_str(), "rb");
+    fseek(rfile, particion_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, rfile);
+
+    int no_inodo = Structs::BuscarInodo(ruta,particion_montada,superblock,rfile);
+    if(no_inodo == -1){
+        printErr("No se encontro archivo de ruta");
+        fclose(rfile);
+        return;
+    }
+    vector<string> div_path = split(ruta,'/');
+    string name_origen = div_path.at(div_path.size()-1);
+
+    string DOT = "digraph G {\n"
+                 "\n"
+                 "  a0 [shape=none label=<\n"
+                 "  <TABLE cellspacing=\"3\" cellpadding=\"2\" style=\"rounded\" bgcolor=\"red\">\n"
+                 "  \n"
+                 " <TR>\n"
+                 "  <TD bgcolor=\"yellow\">" + name_origen + "</TD>\n"
+                                                             "  </TR>"
+                                                             "  \n"
+                                                             "  <TR>\n"
+                                                             "  <TD bgcolor=\"yellow\">Permisos</TD>\n"
+                                                             "  <TD bgcolor=\"yellow\">Propietario</TD>\n"
+                                                             "  <TD bgcolor=\"yellow\">Grupo</TD>\n"
+                                                             "  <TD bgcolor=\"yellow\">Tamano</TD>\n"
+                                                             "  <TD bgcolor=\"yellow\">Fecha</TD>\n"
+                                                             "  <TD bgcolor=\"yellow\">Tipo</TD>\n"
+                                                             "  <TD bgcolor=\"yellow\">Name</TD>\n"
+                                                             "  </TR>";
+
+    DOT += Structs::rep_ls(no_inodo,particion_montada,rfile);
+
+    DOT+="</TABLE>>];\n}";
+    fclose(rfile);
+    exportDOT(DOT,"../Reports/ls.dot",path);
+    printExitoso("Se ejecuto correctamente rep ls");
+}
+
+
+
+
+
+
+
+

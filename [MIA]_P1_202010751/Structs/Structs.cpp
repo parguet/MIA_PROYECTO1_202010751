@@ -51,6 +51,7 @@ void update_inodo_ccr(Structs::Superblock superblock,FILE *disk_file,Structs::In
 void update_folder_ccr(Structs::Superblock superblock,FILE *disk_file,Structs::Folderblock bloque,int indice_bloque);
 Structs::Superblock crear_apuntador_directo(Structs::Superblock superblock,FILE *disk_file,MountedPartition partition_montada,Structs::Inodes InodoBuscado,int contador, int indice_inodo);
 void update_archivo_ccr(Structs::Superblock superblock,FILE *disk_file,Structs::Fileblock bloque,int indice_bloque);
+string ls_rep(string permisos,string Propietario,string Grupo,string Tamano,string Fecha,string Tipo,string Name,string color);
 
 
 //----------------------------- Metodos con codigo ------------------------------------------
@@ -1218,4 +1219,69 @@ int Structs::cambiar_permisos(Structs::Superblock superblock , FILE *disk_file,i
         contador++;
     }
     return 0;
+}
+
+
+//rep
+
+string Structs::rep_ls(int no_inodo, MountedPartition partition_montada, FILE *disk_file) {
+    string DOT = "";
+    Structs::Superblock superblock;
+    fseek(disk_file, partition_montada.start, SEEK_SET);
+    fread(&superblock, sizeof(Structs::Superblock), 1, disk_file);
+
+    Structs::Inodes inodo_ccr;
+    fseek(disk_file, superblock.s_inode_start + no_inodo* sizeof (Structs::Inodes), SEEK_SET);
+    fread(&inodo_ccr, sizeof(Structs::Inodes), 1, disk_file);
+
+    int contador = 0;
+    for (int i : inodo_ccr.i_block){
+        if(i != -1){
+            //bloques directos
+            if(contador<12){
+                int desplazamineto_bloques = superblock.s_block_start + i * sizeof(Structs::Folderblock);
+                fseek(disk_file, desplazamineto_bloques, SEEK_SET);
+                Structs::Folderblock carpeta;
+                fread(&carpeta, sizeof(Structs::Fileblock), 1, disk_file);
+
+                for(Structs::Content x: carpeta.b_content){
+                    if(x.b_inodo != -1 ){
+                        if(x.b_name[0] != '.'){
+
+                            print(x.b_name);
+                            Structs::Inodes Inodo_sig;
+                            fseek(disk_file, superblock.s_inode_start +x.b_inodo * sizeof (Structs::Inodes), SEEK_SET);
+                            fread(&Inodo_sig, sizeof(Structs::Inodes), 1, disk_file);
+                            int tipo = 1;
+                            if(Inodo_sig.i_type == 0){
+                                tipo =0;
+                            }
+                            string fecha = convertToString(Inodo_sig.i_mtime,17);
+                            string name = convertToString(x.b_name,12);
+                            string permisos = convertToString(Inodo_sig.i_perm,3);
+                            DOT += ls_rep(permisos, to_string(Inodo_sig.i_uid), to_string(Inodo_sig.i_gid),to_string(Inodo_sig.i_size),fecha, to_string(tipo),name,"#57fcc3");
+                        }
+                    }
+                }
+            }else{
+                //blooques indirectos
+            }
+        }
+        contador++;
+    }
+
+    return DOT;
+}
+
+string ls_rep(string permisos,string Propietario,string Grupo,string Tamano,string Fecha,string Tipo,string Name,string color){
+    string DOT = "<TR>\n"
+                 "  <TD bgcolor=\"" + color + "\">" +permisos + "</TD>\n"
+                                                                "  <TD bgcolor=\"" + color + "\">" + Propietario + "</TD>\n"
+                                                                                                                   "  <TD bgcolor=\"" + color + "\">" + Grupo + "</TD>\n"
+                                                                                                                                                                "  <TD bgcolor=\"" + color + "\">" + Tamano + "</TD>\n"
+                                                                                                                                                                                                              "  <TD bgcolor=\"" + color + "\">" + Fecha + "</TD>\n"
+                                                                                                                                                                                                                                                           "  <TD bgcolor=\"" + color + "\">" + Tipo + "</TD>\n"
+                                                                                                                                                                                                                                                                                                       "  <TD bgcolor=\"" + color + "\">"+Name+"</TD>\n"
+                                                                                                                                                                                                                                                                                                                                               "  </TR>\n\n";
+    return DOT;
 }

@@ -15,7 +15,15 @@ public:
     void fdisk(int s , char u,string path,char t,char f,string del,string name,int add);
     void mount(string path, string name);
     void unmount(string id);
-
+    void bm_inode(string id,string path);
+    void bm_block(string id,string path);
+    void inode(string id,string path);
+    void block(string id,string path);
+    void sb(string id,string path);
+    void tree(string id,string path);
+    void journaling(string id,string path);
+    void file(string id, string path, string ruta);
+    void ls(string id, string path, string ruta);
 
     void rep_mbr(string id,string path);
     void rep_disk(string id, string path);
